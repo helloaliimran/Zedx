@@ -1,0 +1,49 @@
+@model Zedx.Models.ProductAluminum
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ProductAluminum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ProductAluminumId" />
+            <div class="form-group">
+                <label asp-for="ProductAluminumName" class="control-label"></label>
+                <input asp-for="ProductAluminumName" class="form-control" />
+                <span asp-validation-for="ProductAluminumName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RatePerFeet" class="control-label"></label>
+                <input asp-for="RatePerFeet" class="form-control" />
+                <span asp-validation-for="RatePerFeet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="colorId" class="control-label"></label>
+                <input asp-for="colorId" class="form-control" />
+                <span asp-validation-for="colorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GageId" class="control-label"></label>
+                <input asp-for="GageId" class="form-control" />
+                <span asp-validation-for="GageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

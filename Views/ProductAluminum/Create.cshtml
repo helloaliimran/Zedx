@@ -1,0 +1,53 @@
+@model Zedx.Models.ViewModel.AluminumColorGageViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ProductAluminum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="productAluminum.ProductAluminumName" class="control-label"></label>
+                <input asp-for="productAluminum.ProductAluminumName" class="form-control" />
+                <span asp-validation-for="productAluminum.ProductAluminumName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productAluminum.RatePerFeet" class="control-label"></label>
+                <input asp-for="productAluminum.RatePerFeet" class="form-control" />
+                <span asp-validation-for="productAluminum.RatePerFeet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productAluminum.colorId" class="control-label"></label>
+                <select asp-for="productAluminum.colorId" asp-items="Model.listaluminumColor" class="form-control" >
+                    <option></option>
+                </select>
+                <span asp-validation-for="productAluminum.colorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productAluminum.GageId" class="control-label"></label>
+                <select asp-for="productAluminum.GageId" asp-items="Model.listaluminumGage" class="form-control">
+                    <option></option>
+                    
+                </select>
+                <span asp-validation-for="productAluminum.GageId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
