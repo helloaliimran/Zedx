@@ -24,17 +24,17 @@
             @Html.DisplayFor(model => model.RatePerFeet)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.colorId)
+            @Html.DisplayNameFor(model => model.AluminumColor)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.colorId)
-        </dd>
+            @Html.DisplayFor(model => model.AluminumColor.AluminumColorId)
+        </dd class>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GageId)
+            @Html.DisplayNameFor(model => model.AluminumGage)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GageId)
-        </dd>
+            @Html.DisplayFor(model => model.AluminumGage.AluminumGageId)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">

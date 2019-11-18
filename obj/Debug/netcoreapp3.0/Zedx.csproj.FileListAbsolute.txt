@@ -129,11 +129,6 @@ g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Stock\C
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Stock\Delete.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Stock\Details.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Stock\Edit.cshtml.g.cs
-g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Create.cshtml.g.cs
-g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Delete.cshtml.g.cs
-g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Details.cshtml.g.cs
-g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Edit.cshtml.g.cs
-g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Index.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\AluminumGage\Create.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\AluminumGage\Delete.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\AluminumGage\Details.cshtml.g.cs
@@ -144,3 +139,8 @@ g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Aluminu
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\AluminumColor\Details.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\AluminumColor\Edit.cshtml.g.cs
 g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\AluminumColor\Index.cshtml.g.cs
+g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Create.cshtml.g.cs
+g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Delete.cshtml.g.cs
+g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Details.cshtml.g.cs
+g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Edit.cshtml.g.cs
+g:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\ProductAluminum\Index.cshtml.g.cs

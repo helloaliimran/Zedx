@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Zedx.Data;
 using Zedx.Models;
-using Zedx.Models.ViewModel;
 
 namespace Zedx.Controllers
 {
@@ -23,13 +22,12 @@ namespace Zedx.Controllers
         // GET: ProductAluminum
         public async Task<IActionResult> Index()
         {
-
-
-            return View(await _context.ProductAluminum.ToListAsync());
+            var zedxContext = _context.ProductAluminum.Include(p => p.AluminumColor).Include(p => p.AluminumGage);
+            return View(await zedxContext.ToListAsync());
         }
 
         // GET: ProductAluminum/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(long? id)
         {
             if (id == null)
             {
@@ -37,6 +35,8 @@ namespace Zedx.Controllers
             }
 
             var productAluminum = await _context.ProductAluminum
+                .Include(p => p.AluminumColor)
+                .Include(p => p.AluminumGage)
                 .FirstOrDefaultAsync(m => m.ProductAluminumId == id);
             if (productAluminum == null)
             {
@@ -49,23 +49,9 @@ namespace Zedx.Controllers
         // GET: ProductAluminum/Create
         public IActionResult Create()
         {
-            AluminumColorGageViewModel aluminumColorGageViewModel = new AluminumColorGageViewModel();
-           
-            aluminumColorGageViewModel.listaluminumColor = 
-            (from aluminumColor in _context.AluminumColor select aluminumColor).ToList()
-            .Select(u=> new SelectListItem{
-                Text=u.Name,
-                Value=u.AluminumColorId.ToString()
-            });
-
-            aluminumColorGageViewModel.listaluminumGage =
-            (from aluminumGage in _context.AluminumGage select aluminumGage).ToList()
-            .Select(u=> new SelectListItem{
-                Text=u.Name,
-                Value=u.AluminumGageId.ToString()
-            });
-            
-            return View(aluminumColorGageViewModel);
+            ViewData["AluminumColorID"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
+            ViewData["AluminumGageID"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
+            return View();
         }
 
         // POST: ProductAluminum/Create
@@ -73,7 +59,7 @@ namespace Zedx.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductAluminumId,ProductAluminumName,RatePerFeet,colorId,GageId")] ProductAluminum productAluminum)
+        public async Task<IActionResult> Create([Bind("ProductAluminumId,ProductAluminumName,RatePerFeet,AluminumColorID,AluminumGageID")] ProductAluminum productAluminum)
         {
             if (ModelState.IsValid)
             {
@@ -81,6 +67,8 @@ namespace Zedx.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AluminumColorID"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name", productAluminum.AluminumColorID);
+            ViewData["AluminumGageID"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name", productAluminum.AluminumGageID);
             return View(productAluminum);
         }
 
@@ -97,6 +85,8 @@ namespace Zedx.Controllers
             {
                 return NotFound();
             }
+            ViewData["AluminumColorID"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name", productAluminum.AluminumColorID);
+            ViewData["AluminumGageID"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name", productAluminum.AluminumGageID);
             return View(productAluminum);
         }
 
@@ -105,7 +95,7 @@ namespace Zedx.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ProductAluminumId,ProductAluminumName,RatePerFeet,colorId,GageId")] ProductAluminum productAluminum)
+        public async Task<IActionResult> Edit(long id, [Bind("ProductAluminumId,ProductAluminumName,RatePerFeet,AluminumColorID,AluminumGageID")] ProductAluminum productAluminum)
         {
             if (id != productAluminum.ProductAluminumId)
             {
@@ -132,6 +122,8 @@ namespace Zedx.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["AluminumColorID"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name", productAluminum.AluminumColorID);
+            ViewData["AluminumGageID"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name", productAluminum.AluminumGageID);
             return View(productAluminum);
         }
 
@@ -144,6 +136,8 @@ namespace Zedx.Controllers
             }
 
             var productAluminum = await _context.ProductAluminum
+                .Include(p => p.AluminumColor)
+                .Include(p => p.AluminumGage)
                 .FirstOrDefaultAsync(m => m.ProductAluminumId == id);
             if (productAluminum == null)
             {

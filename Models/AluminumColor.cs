@@ -11,5 +11,6 @@ namespace Zedx.Models
         [DisplayName("Color Name")]
         public string Name { get; set; }
         
+       
     }
 }
