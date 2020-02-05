@@ -19,6 +19,7 @@ namespace Zedx.Models
 
         public AluminumColor AluminumColor{get;set;}
         public AluminumGage AluminumGage{get;set;}
+
     }
     
 }

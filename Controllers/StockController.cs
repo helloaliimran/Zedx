@@ -44,10 +44,19 @@ namespace Zedx.Controllers
         }
 
         // GET: Stock/Create
-        public IActionResult Create()
+        public  IActionResult Create()
         {
-            return View();
+         string s =   getProducts(1,1);
+          return View();
         }
+        [HttpGet]
+        public string getProducts(int ColorId, int GageId)
+{
+    
+       IEnumerable<ProductAluminum> productAluminumlist =_context.ProductAluminum.Where(a=>a.AluminumColorID==ColorId && a.AluminumGageID==GageId).ToList();
+         
+       return  productAluminumlist.Select(p=>(p.ProductAluminumName,p.ProductAluminumId )).ToString(); 
+}
 
         // POST: Stock/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

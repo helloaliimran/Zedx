@@ -1,19 +1,20 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Zedx.Models;
 
 namespace Zedx.Data
 {
-    public class ZedxContext : DbContext
+    public class ZedxContext : IdentityDbContext
     {
         public ZedxContext (DbContextOptions<ZedxContext> options)
             : base(options)
         {
         }
-
         public DbSet<Stock> Stock { get; set; }
         public DbSet<ProductAluminum> ProductAluminum { get; set; }
         public DbSet<AluminumGage> AluminumGage{get;set;}
         public DbSet<AluminumColor> AluminumColor{get;set;}
-
+        public DbSet<AluminumStock> AluminumStock { get; set; }
+            
     }
 }

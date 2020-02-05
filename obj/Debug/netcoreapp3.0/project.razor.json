@@ -9043,7 +9043,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.Razor",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting elements containing attributes with URL expected values.\n            </summary>\n            <remarks>Resolves URLs starting with '~/' (relative to the application's 'webroot' setting) that are not\n            targeted by other <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" />s. Runs prior to other <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" />s to ensure\n            application-relative URLs are resolved.</remarks>\n        ",
         "TagOutputHint": null,
         "CaseSensitive": false,
         "TagMatchingRules": [
@@ -9713,7 +9713,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The name of the action method.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page\" /> is non-<c>null</c>.\n            </remarks>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Action"
@@ -14344,138 +14344,168 @@
   "RootNamespace": "Zedx",
   "Documents": [
     {
-      "FilePath": "Views\\Shared\\Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Stock\\Create.cshtml",
-      "TargetPath": "Views\\Stock\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumGage\\Details.cshtml",
-      "TargetPath": "Views\\AluminumGage\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Home\\Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\ProductAluminum\\Create.cshtml",
-      "TargetPath": "Views\\ProductAluminum\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\ProductAluminum\\Details.cshtml",
-      "TargetPath": "Views\\ProductAluminum\\Details.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumColor\\Edit.cshtml",
-      "TargetPath": "Views\\AluminumColor\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Home\\Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Stock\\Delete.cshtml",
-      "TargetPath": "Views\\Stock\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumColor\\Delete.cshtml",
-      "TargetPath": "Views\\AluminumColor\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Stock\\Index.cshtml",
-      "TargetPath": "Views\\Stock\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumGage\\Index.cshtml",
-      "TargetPath": "Views\\AluminumGage\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumGage\\Edit.cshtml",
-      "TargetPath": "Views\\AluminumGage\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumColor\\Create.cshtml",
-      "TargetPath": "Views\\AluminumColor\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\ProductAluminum\\Delete.cshtml",
-      "TargetPath": "Views\\ProductAluminum\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\ProductAluminum\\Edit.cshtml",
-      "TargetPath": "Views\\ProductAluminum\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumGage\\Delete.cshtml",
-      "TargetPath": "Views\\AluminumGage\\Delete.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\Shared\\_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\AluminumColor\\Details.cshtml",
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumColor\\Details.cshtml",
       "TargetPath": "Views\\AluminumColor\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\AluminumGage\\Create.cshtml",
-      "TargetPath": "Views\\AluminumGage\\Create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views\\ProductAluminum\\Index.cshtml",
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Index.cshtml",
       "TargetPath": "Views\\ProductAluminum\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\AluminumColor\\Index.cshtml",
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumColor\\Index.cshtml",
       "TargetPath": "Views\\AluminumColor\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Stock\\Edit.cshtml",
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Edit.cshtml",
+      "TargetPath": "Views\\AluminumStock\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Index.cshtml",
+      "TargetPath": "Views\\Stock\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Index.cshtml",
+      "TargetPath": "Views\\AluminumGage\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumColor\\Delete.cshtml",
+      "TargetPath": "Views\\AluminumColor\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Account\\Register.cshtml",
+      "TargetPath": "Views\\Account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Delete.cshtml",
+      "TargetPath": "Views\\Stock\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Details.cshtml",
+      "TargetPath": "Views\\ProductAluminum\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumColor\\Create.cshtml",
+      "TargetPath": "Views\\AluminumColor\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Create.cshtml",
+      "TargetPath": "Views\\ProductAluminum\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Edit.cshtml",
+      "TargetPath": "Views\\AluminumGage\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Edit.cshtml",
+      "TargetPath": "Views\\ProductAluminum\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Edit.cshtml",
       "TargetPath": "Views\\Stock\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Stock\\Details.cshtml",
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Delete.cshtml",
+      "TargetPath": "Views\\AluminumGage\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Create.cshtml",
+      "TargetPath": "Views\\Stock\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Index.cshtml",
+      "TargetPath": "Views\\AluminumStock\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Details.cshtml",
+      "TargetPath": "Views\\AluminumGage\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Details.cshtml",
       "TargetPath": "Views\\Stock\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Delete.cshtml",
+      "TargetPath": "Views\\ProductAluminum\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Create.cshtml",
+      "TargetPath": "Views\\AluminumStock\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Details.cshtml",
+      "TargetPath": "Views\\AluminumStock\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumColor\\Edit.cshtml",
+      "TargetPath": "Views\\AluminumColor\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Delete.cshtml",
+      "TargetPath": "Views\\AluminumStock\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "g:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Create.cshtml",
+      "TargetPath": "Views\\AluminumGage\\Create.cshtml",
       "FileKind": "mvc"
     }
   ],
