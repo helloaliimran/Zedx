@@ -8305,11 +8305,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj",
+      "projectUniqueName": "H:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj",
       "projectName": "Zedx",
-      "projectPath": "G:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj",
+      "projectPath": "H:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj",
       "packagesPath": "C:\\Users\\hello\\.nuget\\packages\\",
-      "outputPath": "G:\\ali softwares solutions\\zedx\\Zedx\\obj\\",
+      "outputPath": "H:\\ali softwares solutions\\zedx\\Zedx\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hello\\AppData\\Roaming\\NuGet\\NuGet.Config"
