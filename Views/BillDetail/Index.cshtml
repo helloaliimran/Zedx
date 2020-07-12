@@ -1,0 +1,143 @@
+@model IEnumerable<Zedx.Models.BillDetail>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AluminumColor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AluminumGage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalFeet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NetAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountedAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountToBePaid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bill)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SheetHeight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SheetWidth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedById)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedById)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Deleted)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AluminumColor.AluminumColorId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AluminumGage.AluminumGageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Feet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalFeet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountedAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountToBePaid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bill.BillId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SheetHeight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SheetWidth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedById)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedById)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deleted)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BillDetailId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BillDetailId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BillDetailId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

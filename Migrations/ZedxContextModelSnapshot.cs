@@ -215,6 +215,52 @@ namespace Zedx.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Zedx.Models.AllProduct", b =>
+                {
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("AluminumColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AluminumGageId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("CreatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("Rate")
+                        .HasColumnType("real");
+
+                    b.HasKey("ProductId");
+
+                    b.HasIndex("AluminumColorId");
+
+                    b.HasIndex("AluminumGageId");
+
+                    b.HasIndex("ProductTypeId");
+
+                    b.ToTable("AllProducts");
+                });
+
             modelBuilder.Entity("Zedx.Models.AluminumColor", b =>
                 {
                     b.Property<int>("AluminumColorId")
@@ -268,6 +314,147 @@ namespace Zedx.Migrations
                     b.ToTable("AluminumStock");
                 });
 
+            modelBuilder.Entity("Zedx.Models.Bill", b =>
+                {
+                    b.Property<long>("BillId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("CustomerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CustomersCustomerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("NetAmount")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Total")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalDiscount")
+                        .HasColumnType("real");
+
+                    b.HasKey("BillId");
+
+                    b.HasIndex("CustomersCustomerId");
+
+                    b.ToTable("Bill");
+                });
+
+            modelBuilder.Entity("Zedx.Models.BillDetail", b =>
+                {
+                    b.Property<long>("BillDetailId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("AllProductProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("AluminumColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AluminumGageId")
+                        .HasColumnType("int");
+
+                    b.Property<float>("AmountToBePaid")
+                        .HasColumnType("real");
+
+                    b.Property<long>("BillId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CreatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<float>("DiscountedAmount")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Feet")
+                        .HasColumnType("real");
+
+                    b.Property<long?>("ModifiedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("NetAmount")
+                        .HasColumnType("real");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<float>("Quantity")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Rate")
+                        .HasColumnType("real");
+
+                    b.Property<float>("SheetHeight")
+                        .HasColumnType("real");
+
+                    b.Property<float>("SheetWidth")
+                        .HasColumnType("real");
+
+                    b.Property<float>("TotalFeet")
+                        .HasColumnType("real");
+
+                    b.HasKey("BillDetailId");
+
+                    b.HasIndex("AllProductProductId");
+
+                    b.HasIndex("AluminumColorId");
+
+                    b.HasIndex("AluminumGageId");
+
+                    b.HasIndex("BillId");
+
+                    b.ToTable("BillDetail");
+                });
+
+            modelBuilder.Entity("Zedx.Models.Customers", b =>
+                {
+                    b.Property<long>("CustomerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CustomerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CustomerId");
+
+                    b.ToTable("Customers");
+                });
+
             modelBuilder.Entity("Zedx.Models.ProductAluminum", b =>
                 {
                     b.Property<long>("ProductAluminumId")
@@ -315,6 +502,34 @@ namespace Zedx.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Stock");
+                });
+
+            modelBuilder.Entity("Zedx.Models.ViewModel.ProductType", b =>
+                {
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("CreatedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("ModifiedById")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductTypeId");
+
+                    b.ToTable("ProductTypes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -368,11 +583,56 @@ namespace Zedx.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Zedx.Models.AllProduct", b =>
+                {
+                    b.HasOne("Zedx.Models.AluminumColor", "AluminumColor")
+                        .WithMany()
+                        .HasForeignKey("AluminumColorId");
+
+                    b.HasOne("Zedx.Models.AluminumGage", "AluminumGage")
+                        .WithMany()
+                        .HasForeignKey("AluminumGageId");
+
+                    b.HasOne("Zedx.Models.ViewModel.ProductType", "ProductType")
+                        .WithMany("AllProduct")
+                        .HasForeignKey("ProductTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Zedx.Models.AluminumStock", b =>
                 {
                     b.HasOne("Zedx.Models.ProductAluminum", "ProductAluminum")
                         .WithMany()
                         .HasForeignKey("ProductAluminumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Zedx.Models.Bill", b =>
+                {
+                    b.HasOne("Zedx.Models.Customers", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomersCustomerId");
+                });
+
+            modelBuilder.Entity("Zedx.Models.BillDetail", b =>
+                {
+                    b.HasOne("Zedx.Models.AllProduct", "AllProduct")
+                        .WithMany()
+                        .HasForeignKey("AllProductProductId");
+
+                    b.HasOne("Zedx.Models.AluminumColor", "AluminumColor")
+                        .WithMany()
+                        .HasForeignKey("AluminumColorId");
+
+                    b.HasOne("Zedx.Models.AluminumGage", "AluminumGage")
+                        .WithMany()
+                        .HasForeignKey("AluminumGageId");
+
+                    b.HasOne("Zedx.Models.Bill", "Bill")
+                        .WithMany()
+                        .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Zedx.Models.AluminumColor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @*@Html.Partial("~/Views/Shared/_AluminumColor.cshtml",item);*@
+            @Html.DisplayFor(model => item.Name);
+        }
+    </tbody>
+</table>

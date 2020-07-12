@@ -14364,6 +14364,11 @@
   "RootNamespace": "Zedx",
   "Documents": [
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductType\\Edit.cshtml",
+      "TargetPath": "Views\\ProductType\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Edit.cshtml",
       "TargetPath": "Views\\AluminumStock\\Edit.cshtml",
       "FileKind": "mvc"
@@ -14371,6 +14376,11 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Administration\\ListRoles.cshtml",
       "TargetPath": "Views\\Administration\\ListRoles.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Bill\\Edit.cshtml",
+      "TargetPath": "Views\\Bill\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14384,8 +14394,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\BillDetail\\Edit.cshtml",
+      "TargetPath": "Views\\BillDetail\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Details.cshtml",
       "TargetPath": "Views\\AluminumStock\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductType\\Create.cshtml",
+      "TargetPath": "Views\\ProductType\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14404,6 +14424,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Bill\\Index.cshtml",
+      "TargetPath": "Views\\Bill\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Account\\Register.cshtml",
       "TargetPath": "Views\\Account\\Register.cshtml",
       "FileKind": "mvc"
@@ -14411,6 +14436,16 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Edit.cshtml",
       "TargetPath": "Views\\AluminumGage\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Customer\\Index.cshtml",
+      "TargetPath": "Views\\Customer\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\BillDetail\\Delete.cshtml",
+      "TargetPath": "Views\\BillDetail\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14424,6 +14459,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AllProduct\\Details.cshtml",
+      "TargetPath": "Views\\AllProduct\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumGage\\Details.cshtml",
       "TargetPath": "Views\\AluminumGage\\Details.cshtml",
       "FileKind": "mvc"
@@ -14431,6 +14471,11 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Edit.cshtml",
       "TargetPath": "Views\\Stock\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\_AluminumColor.cshtml",
+      "TargetPath": "Views\\Shared\\_AluminumColor.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14446,6 +14491,21 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Details.cshtml",
       "TargetPath": "Views\\ProductAluminum\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Bill\\Details.cshtml",
+      "TargetPath": "Views\\Bill\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AllProduct\\Index.cshtml",
+      "TargetPath": "Views\\AllProduct\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\BillDetail\\Details.cshtml",
+      "TargetPath": "Views\\BillDetail\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14469,6 +14529,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AllProduct\\Create.cshtml",
+      "TargetPath": "Views\\AllProduct\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Edit.cshtml",
       "TargetPath": "Views\\ProductAluminum\\Edit.cshtml",
       "FileKind": "mvc"
@@ -14479,8 +14544,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Bill\\Delete.cshtml",
+      "TargetPath": "Views\\Bill\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Create.cshtml",
       "TargetPath": "Views\\Stock\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Customer\\Delete.cshtml",
+      "TargetPath": "Views\\Customer\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductType\\Index.cshtml",
+      "TargetPath": "Views\\ProductType\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Customer\\Details.cshtml",
+      "TargetPath": "Views\\Customer\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Temp\\Index.cshtml",
+      "TargetPath": "Views\\Temp\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14499,6 +14589,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductType\\Details.cshtml",
+      "TargetPath": "Views\\ProductType\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Bill\\Create.cshtml",
+      "TargetPath": "Views\\Bill\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Delete.cshtml",
       "TargetPath": "Views\\Stock\\Delete.cshtml",
       "FileKind": "mvc"
@@ -14511,6 +14611,11 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Create.cshtml",
       "TargetPath": "Views\\ProductAluminum\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AllProduct\\Edit.cshtml",
+      "TargetPath": "Views\\AllProduct\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14529,13 +14634,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\BillDetail\\Create.cshtml",
+      "TargetPath": "Views\\BillDetail\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Index.cshtml",
       "TargetPath": "Views\\Stock\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Customer\\Create.cshtml",
+      "TargetPath": "Views\\Customer\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Index.cshtml",
       "TargetPath": "Views\\AluminumStock\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductType\\Delete.cshtml",
+      "TargetPath": "Views\\ProductType\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14546,6 +14666,21 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Home\\Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\BillDetail\\Index.cshtml",
+      "TargetPath": "Views\\BillDetail\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Customer\\Edit.cshtml",
+      "TargetPath": "Views\\Customer\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AllProduct\\Delete.cshtml",
+      "TargetPath": "Views\\AllProduct\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {

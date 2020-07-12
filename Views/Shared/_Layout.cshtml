@@ -34,16 +34,32 @@
           <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumColor" asp-action="index">Color</a></li>
         </ul>
       </li>
-
-        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="AluminumStock" asp-action="Index">Aluminum Stock</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ProductAluminum" asp-action="Index">Aluminum Stock</a>
-                        </li>
-                        <li class="nav-item">
+       <li class="dropdown nav-item">
+     <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">Stock
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumStock" asp-action="index">Aluminum</a></li>
+          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hardware</a></li>
+        </ul>
+      </li>
+        <li class="dropdown nav-item">
+     <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">List
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="ProductAluminum" asp-action="index">Aluminum</a></li>
+          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hardware</a></li>
+        </ul>
+      </li>
+    <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">Bill</a>
+    </li>
+      <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="index">Cusotmers</a>
+    </li>
+      <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">Roles</a>
-                        </li>
+    </li>                 
+                        
  </ul>
                 </div>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
