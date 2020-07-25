@@ -455,6 +455,27 @@ namespace Zedx.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("Zedx.Models.MaintenanceCounter", b =>
+                {
+                    b.Property<int>("MaintenanceCounterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ColumnName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Counter")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TableName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaintenanceCounterId");
+
+                    b.ToTable("MaintenanceCounter");
+                });
+
             modelBuilder.Entity("Zedx.Models.ProductAluminum", b =>
                 {
                     b.Property<long>("ProductAluminumId")

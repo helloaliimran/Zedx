@@ -14599,6 +14599,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\BillDetail\\Creates.cshtml",
+      "TargetPath": "Views\\BillDetail\\Creates.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Stock\\Delete.cshtml",
       "TargetPath": "Views\\Stock\\Delete.cshtml",
       "FileKind": "mvc"
@@ -14631,6 +14636,11 @@
     {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\AluminumStock\\Delete.cshtml",
       "TargetPath": "Views\\AluminumStock\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\_BillDetails.cshtml",
+      "TargetPath": "Views\\Shared\\_BillDetails.cshtml",
       "FileKind": "mvc"
     },
     {

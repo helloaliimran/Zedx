@@ -1,0 +1,163 @@
+﻿@model Zedx.Models.ViewModel.BillandBillDetail
+
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+<div class="row">
+
+    <div class="col-md-12">
+        <form asp-action="GetBillDetails" method="post" data-ajax="true" data-ajax-success="onSuccess" data-ajax-method="post" data-ajax-update="#divAddProducts" data-ajax-confirm="Are you sure! ">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @Html.HiddenFor(x => x.Bill.Customers.CustomerId)
+
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Customer</label>
+                        <select class="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label class="control-label">Type</label>
+                        <select class="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.ProductId" class="control-label"></label>
+                        <input asp-for="BillDetail.ProductId" class="form-control" />
+                        <span asp-validation-for="BillDetail.ProductId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.AluminumColorId" class="control-label"></label>
+                        <select asp-for="BillDetail.AluminumColorId" class="form-control" asp-items="ViewBag.AluminumColorId"></select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.AluminumGageId" class="control-label"></label>
+                        <select asp-for="BillDetail.AluminumGageId" class="form-control" asp-items="ViewBag.AluminumGageId"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.Rate" class="control-label"></label>
+                        <input asp-for="BillDetail.Rate" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.Rate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.Discount" class="control-label"></label>
+                        <input asp-for="BillDetail.Discount" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.Discount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.Feet" class="control-label"></label>
+                        <input asp-for="BillDetail.Feet" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.Feet" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.Quantity" class="control-label"></label>
+                        <input asp-for="BillDetail.Quantity" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.Quantity" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.TotalFeet" class="control-label"></label>
+                        <input asp-for="BillDetail.TotalFeet" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.TotalFeet" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-2">
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.NetAmount" class="control-label"></label>
+                        <input asp-for="BillDetail.NetAmount" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.NetAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.DiscountedAmount" class="control-label"></label>
+                        <input asp-for="BillDetail.DiscountedAmount" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.DiscountedAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.AmountToBePaid" class="control-label"></label>
+                        <input asp-for="BillDetail.AmountToBePaid" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.AmountToBePaid" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.SheetHeight" class="control-label"></label>
+                        <input asp-for="BillDetail.SheetHeight" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.SheetHeight" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BillDetail.SheetWidth" class="control-label"></label>
+                        <input asp-for="BillDetail.SheetWidth" value="2" class="form-control" />
+                        <span asp-validation-for="BillDetail.SheetWidth" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12" id="divAddProducts">
+                    <input type="hidden" value="0" name="BillDetail_BillId" id="BillDetail_BillId">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+      <script src="~/lib/jquery.unobtrusive-ajax.js"></script>
+}
+
+<script>
+    //function onSuccess(result) {
+    //    debugger;
+    //    var billId = $("#BillDetail_BillId").val();
+    //    if (billId == "0") {
+    //        billId = $("#divAddProducts").find('#BillId').val();
+    //        $("#BillDetail_BillId").val(billId);
+    //    }
+    //    alert($("#BillDetail_BillId").val());
+//}
+</script>

@@ -380,3 +380,11 @@ H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Bill\De
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Bill\Details.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Bill\Edit.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Bill\Index.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\bin\Debug\netcoreapp3.0\libman.json
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Create.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Creates.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Delete.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Details.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Edit.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Index.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BillDetails.cshtml.g.cs

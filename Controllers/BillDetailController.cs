@@ -4,9 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Zedx.Data;
 using Zedx.Models;
+using Zedx.Models.Common;
+using Zedx.Models.ViewModel;
 
 namespace Zedx.Controllers
 {
@@ -55,6 +58,14 @@ namespace Zedx.Controllers
             ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId");
             return View();
         }
+        public IActionResult Creates()
+        {
+            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
+            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
+            ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId");
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
+            return View();
+        }
 
         // POST: BillDetail/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -73,6 +84,53 @@ namespace Zedx.Controllers
             ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId", billDetail.AluminumGageId);
             ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId", billDetail.BillId);
             return View(billDetail);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GetBillDetails([Bind("BillDetailId,ProductId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth")] BillDetail billDetail)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    BillandBillDetail billandBillDetail = new BillandBillDetail();
+                    if (billDetail.BillId == 0)
+                    {
+                        Bill bill = new Bill();
+                        bill.BillId = MaintenanceCounterRepository.GetId(_context, "BillId", "Bill");
+                        bill.CustomerId = 1;
+                        bill.TotalDiscount = 0;
+                        bill.NetAmount = 0;
+                        bill.Total = 0;
+                        bill.CreatedById = 100;
+                        bill.CreatedDate = DateTime.Now;
+                        _context.Add(bill);
+                        await _context.SaveChangesAsync();
+                        billDetail.BillId = bill.BillId;
+                        billandBillDetail.Bill = bill;
+                    }
+                    billDetail.BillDetailId = MaintenanceCounterRepository.GetId(_context, "BillId", "Bill");
+                    billDetail.CreatedById = 100;
+                    billDetail.CreatedDate = DateTime.Now;
+                    _context.Add(billDetail);
+                    await _context.SaveChangesAsync();
+                    billandBillDetail.BillDetail = billDetail;
+                    billandBillDetail.lbillDetail = _context.BillDetail.Where(x => x.BillId == billDetail.BillId).ToList();
+                    return PartialView("_BillDetails", billandBillDetail);
+                    //var model =
+                    //    new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "BillandBillDetail", billandBillDetail } };
+                    //model.Model = billandBillDetail;
+                    //return new PartialViewResult
+                    //{
+                    //    ViewName = "_BillDetails",
+                    //    ViewData = model
+                    //};
+                }
+                catch (Exception e) { }
+            }
+
+
+            return View();
         }
 
         // GET: BillDetail/Edit/5

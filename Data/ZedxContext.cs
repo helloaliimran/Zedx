@@ -11,6 +11,7 @@ namespace Zedx.Data
             : base(options)
         {
         }
+        public  DbSet<MaintenanceCounter> MaintenanceCounter { get; set; }
         public DbSet<Stock> Stock { get; set; }
         public DbSet<ProductAluminum> ProductAluminum { get; set; }
         public DbSet<AluminumGage> AluminumGage{get;set;}
