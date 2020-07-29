@@ -14614,6 +14614,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\_ProductSearchResult.cshtml",
+      "TargetPath": "Views\\Shared\\_ProductSearchResult.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\ProductAluminum\\Create.cshtml",
       "TargetPath": "Views\\ProductAluminum\\Create.cshtml",
       "FileKind": "mvc"

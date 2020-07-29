@@ -12,7 +12,7 @@ namespace Zedx.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long ProductId { get; set; }
+        public long AllProductId { get; set; }
         public string Name { get; set; }
         public float Rate { get; set; }
         public  long CreatedById { get; set; }

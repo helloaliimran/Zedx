@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Zedx.Models.AllProduct>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AluminumColor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AluminumGage)
+                </th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr onclick="OnProductSelect(this)">
+                    <td class="pName">
+                        @Html.HiddenFor(modelItem => item.AllProductId, new { @class = "productId" })
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="pRate">
+                        @Html.DisplayFor(modelItem => item.Rate)
+                    </td>
+                    <td class="pColor">
+                        @Html.DisplayFor(modelItem => item.AluminumColor.Name)
+                    </td>
+                    <td class="pGage">
+                        @Html.DisplayFor(modelItem => item.AluminumGage.Name)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

@@ -20,49 +20,56 @@
             </tr>
         </thead>
         <tbody class="tbodyBillDetail">
+            @if (Model.lbillDetail!=null)
+            {
             @foreach (var item in Model.lbillDetail)
             {
-                <tr>
-                    <td></td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ProductId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AluminumColor.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AluminumGage.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Feet)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Discount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TotalFeet)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SheetHeight)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SheetWidth)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NetAmount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DiscountedAmount)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AmountToBePaid)
-                        @Html.HiddenFor(modelItem => item.Bill.BillId)
-                        @Html.HiddenFor(modelItem => item.Bill.CustomerId)
-                    </td>
-                </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AllProduct.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AluminumColor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AluminumGage.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Feet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Discount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalFeet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SheetHeight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SheetWidth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NetAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiscountedAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountToBePaid)
+                    @Html.HiddenFor(modelItem => item.Bill.BillId)
+                    @Html.HiddenFor(modelItem => item.Bill.CustomerId)
+                    @Html.HiddenFor(modelItem => item.BillDetailId)
+                </td>
+            </tr>
+            }
             }
         </tbody>
     </table>

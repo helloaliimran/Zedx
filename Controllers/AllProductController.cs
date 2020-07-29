@@ -38,7 +38,7 @@ namespace Zedx.Controllers
                 .Include(a => a.AluminumColor)
                 .Include(a => a.AluminumGage)
                 .Include(a => a.ProductType)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+                .FirstOrDefaultAsync(m => m.AllProductId == id);
             if (allProduct == null)
             {
                 return NotFound();
@@ -61,7 +61,7 @@ namespace Zedx.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,Rate,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
+        public async Task<IActionResult> Create([Bind("AllProductId,Name,Rate,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace Zedx.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("ProductId,Name,Rate,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
         {
-            if (id != allProduct.ProductId)
+            if (id != allProduct.AllProductId)
             {
                 return NotFound();
             }
@@ -115,7 +115,7 @@ namespace Zedx.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AllProductExists(allProduct.ProductId))
+                    if (!AllProductExists(allProduct.AllProductId))
                     {
                         return NotFound();
                     }
@@ -144,7 +144,7 @@ namespace Zedx.Controllers
                 .Include(a => a.AluminumColor)
                 .Include(a => a.AluminumGage)
                 .Include(a => a.ProductType)
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+                .FirstOrDefaultAsync(m => m.AllProductId == id);
             if (allProduct == null)
             {
                 return NotFound();
@@ -166,7 +166,7 @@ namespace Zedx.Controllers
 
         private bool AllProductExists(long id)
         {
-            return _context.AllProducts.Any(e => e.ProductId == id);
+            return _context.AllProducts.Any(e => e.AllProductId == id);
         }
     }
 }

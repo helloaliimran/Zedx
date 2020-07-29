@@ -8,12 +8,19 @@
 <div class="row">
 
     <div class="col-md-12">
-        <form asp-action="GetBillDetails" method="post" data-ajax="true" data-ajax-success="onSuccess" data-ajax-method="post" data-ajax-update="#divAddProducts" data-ajax-confirm="Are you sure! ">
+        <form asp-action="Creates" id="BillDetailForm" method="post" data-ajax="true" data-ajax-success="onSuccess" data-ajax-method="post" data-ajax-update="#divAddProducts" data-ajax-confirm="Are you sure! ">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(x => x.Bill.Customers.CustomerId)
-
+            @Html.HiddenFor(x => x.BillDetail.AllProductId)
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-1">
+                    <div class="form-group">
+                        <label class="control-label">Bill Id</label>
+                        <label class="control-label" id="lblBillId">New</label>
+
+                    </div>
+                </div>
+                <div class="col-md-1">
                     <div class="form-group">
                         <label class="control-label">Customer</label>
                         <select class="form-control" asp-items="ViewBag.ProductTypeId"></select>
@@ -22,14 +29,15 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label class="control-label">Type</label>
-                        <select class="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                        <select class="form-control" id="product_type" asp-items="ViewBag.ProductTypeId"></select>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label asp-for="BillDetail.ProductId" class="control-label"></label>
-                        <input asp-for="BillDetail.ProductId" class="form-control" />
-                        <span asp-validation-for="BillDetail.ProductId" class="text-danger"></span>
+                        <label asp-for="BillDetail.AllProduct.Name" class="control-label"></label>
+                        <input asp-for="BillDetail.AllProduct.Name" autocomplete="off" class="form-control" />
+                        <span asp-validation-for="BillDetail.AllProduct.Name" class="text-danger"></span>
+                        <div id="divProductsSerachResults"></div>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -128,13 +136,14 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <input type="button" value="Create" onclick="BillDetailSubmit(this)" class="btn btn-primary" />
+
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12" id="divAddProducts">
-                    <input type="hidden" value="0" name="BillDetail_BillId" id="BillDetail_BillId">
+                    @Html.Partial("_BillDetails", Model)
                 </div>
             </div>
         </form>
@@ -147,17 +156,65 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-      <script src="~/lib/jquery.unobtrusive-ajax.js"></script>
-}
+    <script src="~/lib/jquery.unobtrusive-ajax.js"></script>
 
-<script>
-    //function onSuccess(result) {
-    //    debugger;
-    //    var billId = $("#BillDetail_BillId").val();
-    //    if (billId == "0") {
-    //        billId = $("#divAddProducts").find('#BillId').val();
-    //        $("#BillDetail_BillId").val(billId);
-    //    }
-    //    alert($("#BillDetail_BillId").val());
-//}
-</script>
+    <script>
+        function onSuccess() {
+            $("#lblBillId").text($("#BillDetail_BillId").val());
+        }
+
+        $("#BillDetail_AllProduct_Name").on('keyup', function (e) {
+            debugger;
+            var code = e.key;
+            if (code === "Enter")
+                LoadProductsddl();
+            else e.preventDefault();
+
+        });
+        //$("#BillDetail_AllProduct_Name").focusout(function () {
+        //    $("#divProductsSerachResults").hide();
+        //});
+        function LoadProductsddl() {
+
+            var productName = $("#BillDetail_AllProduct_Name").val();
+            var color = $("#BillDetail_AluminumColorId").val() || 0;
+            var gage = $("#BillDetail_AluminumGageId").val() || 0;
+            var type = $("#product_type").val() || 0;
+            $.ajax({
+                url: '/BillDetail/ProductSerach',
+                data: {
+                    productName: productName,
+                    productType: type,
+                    aluminumColor: color,
+                    aluminumGage: gage
+
+                },
+                success: function (data) { $("#divProductsSerachResults").html(data); $("#divProductsSerachResults").show(); }
+            })
+        }
+        function OnProductSelect(elem) {
+            var pId = $(elem).find(".productId").val();
+            var pRate = $.trim($(elem).find(".pRate").text());
+            $("#BillDetail_AllProductId").val(pId);
+            $("#BillDetail_Rate").val(pRate);
+            $("#divProductsSerachResults").hide();
+        }
+        function BillDetailSubmit() {
+            $("#BillDetailForm").submit();
+        }
+        $(document).ready(function () {
+
+        });
+    </script>
+}
+@section Styles{
+    <style>
+        #divProductsSerachResults {
+            position: absolute;
+            border: 1px solid grey;
+            background-color: white;
+            z-index: 1;
+            border-radius: 7px;
+        }
+    </style>
+}

@@ -12,7 +12,7 @@ namespace Zedx.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long BillDetailId { get; set; }
-        public long ProductId { get; set; }
+        public long AllProductId { get; set; }
         public AllProduct AllProduct { get; set; }
         public int? AluminumColorId { get; set; }
         public AluminumColor AluminumColor { get; set; }

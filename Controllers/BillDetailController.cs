@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -58,13 +59,25 @@ namespace Zedx.Controllers
             ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId");
             return View();
         }
-        public IActionResult Creates()
+        public IActionResult Creates(long? billId)
         {
             ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
             ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
             ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId");
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
-            return View();
+            BillandBillDetail billandBillDetail = new BillandBillDetail();
+            BillDetail billDetail = new BillDetail();
+            if (billId == null)
+            {
+                billDetail.BillId = 0;
+                billandBillDetail.BillDetail = billDetail;
+                return View(billandBillDetail);
+            }
+            billDetail.BillId = (long)billId;
+            billandBillDetail.BillDetail = billDetail;
+            billandBillDetail.Bill = _context.Bill.Where(x => x.BillId == billId).FirstOrDefault();
+            billandBillDetail.lbillDetail = _context.BillDetail.Include(x => x.AllProduct).Where(x => x.BillId == billId).ToList();
+            return View(billandBillDetail);
         }
 
         // POST: BillDetail/Create
@@ -87,10 +100,12 @@ namespace Zedx.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> GetBillDetails([Bind("BillDetailId,ProductId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth")] BillDetail billDetail)
+        public async Task<IActionResult> Creates([Bind("BillDetailId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth")] BillDetail billDetail)
         {
-            if (ModelState.IsValid)
+           
+                if (ModelState.IsValid)
             {
+               
                 try
                 {
                     BillandBillDetail billandBillDetail = new BillandBillDetail();
@@ -107,7 +122,6 @@ namespace Zedx.Controllers
                         _context.Add(bill);
                         await _context.SaveChangesAsync();
                         billDetail.BillId = bill.BillId;
-                        billandBillDetail.Bill = bill;
                     }
                     billDetail.BillDetailId = MaintenanceCounterRepository.GetId(_context, "BillId", "Bill");
                     billDetail.CreatedById = 100;
@@ -115,16 +129,11 @@ namespace Zedx.Controllers
                     _context.Add(billDetail);
                     await _context.SaveChangesAsync();
                     billandBillDetail.BillDetail = billDetail;
-                    billandBillDetail.lbillDetail = _context.BillDetail.Where(x => x.BillId == billDetail.BillId).ToList();
+                    billandBillDetail.Bill = _context.Bill.Where(x => x.BillId == billDetail.BillId).FirstOrDefault();
+                    billandBillDetail.lbillDetail =
+                        _context.BillDetail.Include(x => x.AllProduct).Include(x => x.AluminumColor).Include(x => x.AluminumGage).
+                        Where(x => x.BillId == billDetail.BillId).ToList();
                     return PartialView("_BillDetails", billandBillDetail);
-                    //var model =
-                    //    new ViewDataDictionary(new Microsoft.AspNetCore.Mvc.ModelBinding.EmptyModelMetadataProvider(), new Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary()) { { "BillandBillDetail", billandBillDetail } };
-                    //model.Model = billandBillDetail;
-                    //return new PartialViewResult
-                    //{
-                    //    ViewName = "_BillDetails",
-                    //    ViewData = model
-                    //};
                 }
                 catch (Exception e) { }
             }
@@ -225,6 +234,28 @@ namespace Zedx.Controllers
         private bool BillDetailExists(long id)
         {
             return _context.BillDetail.Any(e => e.BillDetailId == id);
+        }
+
+        public IActionResult ProductSerach() {
+            string pName = Request.Query["productName"];
+            int pType =int.Parse(Request.Query["productType"]);
+            int pColor =int.Parse(Request.Query["aluminumColor"]);
+            int pGage =int.Parse(Request.Query["aluminumGage"]);
+            List<AllProduct> result;
+            if (pType == 1)
+            {
+                 result = _context.AllProducts
+                                                .Include(x =>x.AluminumGage)
+                                                .Include(x=>x.AluminumColor)
+                                                .Where(x => (x.Name == pName && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
+            }
+            else
+            {
+                result = _context.AllProducts
+                                             .Include(x => x.ProductType)
+                                             .Where(x => x.Name == pName ).ToList();
+            }
+            return PartialView("_ProductSearchResult", result);
         }
     }
 }

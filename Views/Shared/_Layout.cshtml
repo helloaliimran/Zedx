@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
+    @using Microsoft.AspNetCore.Identity
+    @inject SignInManager<IdentityUser> SignInManager
     <header>
-    
+
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Zedx</a>
@@ -24,73 +24,79 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
-                    
-                          <li class="dropdown nav-item">
-        <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">Aluminum
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="ProductAluminum" asp-action="index">Product</a></li>
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumGage" asp-action="index">Gage</a></li>
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumColor" asp-action="index">Color</a></li>
-        </ul>
-      </li>
-       <li class="dropdown nav-item">
-     <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">Stock
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumStock" asp-action="index">Aluminum</a></li>
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hardware</a></li>
-        </ul>
-      </li>
-        <li class="dropdown nav-item">
-     <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">List
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="ProductAluminum" asp-action="index">Aluminum</a></li>
-          <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hardware</a></li>
-        </ul>
-      </li>
-    <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">Bill</a>
-    </li>
-      <li class="nav-item">
+
+                        <li class="dropdown nav-item">
+                            <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">
+                                Aluminum
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AllProduct" asp-action="index">Product</a></li>
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumGage" asp-action="index">Gage</a></li>
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumColor" asp-action="index">Color</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">
+                                Stock
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="AluminumStock" asp-action="index">Aluminum</a></li>
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hardware</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown nav-item">
+                            <a class="nav-link text-dark dropdown-toggle" data-toggle="dropdown" href="#">
+                                List
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="ProductAluminum" asp-action="index">Aluminum</a></li>
+                                <li><a href="#"><a class="nav-link text-dark" asp-area="" asp-controller="" asp-action="">Hardware</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="BillDetail" asp-action="Creates">Bill</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="index">Cusotmers</a>
-    </li>
-      <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Administration" asp-action="ListRoles">Roles</a>
-    </li>                 
-                        
- </ul>
+                        </li>
+
+                    </ul>
                 </div>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
-       <ul class="navbar-nav ml-auto">
-        @*If the user is signed-in display Logout link*@
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <li class="nav-item">
-                <form method="post" asp-controller="account" asp-action="logout">
-                    <button type="submit" style="width:auto"
-                            class="nav-link btn btn-link py-0">
-                        Logout @User.Identity.Name
-                    </button>
-                </form>
-            </li>
-        }
-        else
-        {
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="account" asp-action="register">
-                    Register
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" asp-controller="account" asp-action="login">
-                    Login
-                </a>
-            </li>
-        }
-    </ul>
-</div>
+                    <ul class="navbar-nav ml-auto">
+                        @*If the user is signed-in display Logout link*@
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <form method="post" asp-controller="account" asp-action="logout">
+                                    <button type="submit" style="width:auto"
+                                            class="nav-link btn btn-link py-0">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="account" asp-action="register">
+                                    Register
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="account" asp-action="login">
+                                    Login
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
@@ -109,5 +115,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
+    @RenderSection("Styles", required: false)
 </body>
 </html>
