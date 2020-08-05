@@ -63,7 +63,7 @@ namespace Zedx.Controllers
         {
             ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
             ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
-            ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId");
+            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName");
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
             BillandBillDetail billandBillDetail = new BillandBillDetail();
             BillDetail billDetail = new BillDetail();

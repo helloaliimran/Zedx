@@ -12,125 +12,192 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.HiddenFor(x => x.Bill.Customers.CustomerId)
             @Html.HiddenFor(x => x.BillDetail.AllProductId)
-            <div class="row">
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label">Bill Id</label>
-                        <label class="control-label" id="lblBillId">New</label>
-
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="control-label">Customer</label>
-                        <select class="form-control" asp-items="ViewBag.ProductTypeId"></select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label class="control-label">Type</label>
-                        <select class="form-control" id="product_type" asp-items="ViewBag.ProductTypeId"></select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.AllProduct.Name" class="control-label"></label>
-                        <input asp-for="BillDetail.AllProduct.Name" autocomplete="off" class="form-control" />
-                        <span asp-validation-for="BillDetail.AllProduct.Name" class="text-danger"></span>
-                        <div id="divProductsSerachResults"></div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.AluminumColorId" class="control-label"></label>
-                        <select asp-for="BillDetail.AluminumColorId" class="form-control" asp-items="ViewBag.AluminumColorId"></select>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.AluminumGageId" class="control-label"></label>
-                        <select asp-for="BillDetail.AluminumGageId" class="form-control" asp-items="ViewBag.AluminumGageId"></select>
-                    </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label class="control-label">Bill Id</label>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.Rate" class="control-label"></label>
-                        <input asp-for="BillDetail.Rate" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.Rate" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.Discount" class="control-label"></label>
-                        <input asp-for="BillDetail.Discount" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.Discount" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.Feet" class="control-label"></label>
-                        <input asp-for="BillDetail.Feet" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.Feet" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.Quantity" class="control-label"></label>
-                        <input asp-for="BillDetail.Quantity" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.Quantity" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.TotalFeet" class="control-label"></label>
-                        <input asp-for="BillDetail.TotalFeet" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.TotalFeet" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-2">
-
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label class="control-label" id="lblBillId">New</label>
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.NetAmount" class="control-label"></label>
-                        <input asp-for="BillDetail.NetAmount" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.NetAmount" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.DiscountedAmount" class="control-label"></label>
-                        <input asp-for="BillDetail.DiscountedAmount" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.DiscountedAmount" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label asp-for="BillDetail.AmountToBePaid" class="control-label"></label>
-                        <input asp-for="BillDetail.AmountToBePaid" value="2" class="form-control" />
-                        <span asp-validation-for="BillDetail.AmountToBePaid" class="text-danger"></span>
-                    </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label class="control-label">Customer</label>
                 </div>
             </div>
-            <div class="row">
-
-                <div class="col-md-4">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select class="form-control form-control-sm" asp-items="ViewBag.CustomerId">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <select class="form-control form-control-sm" id="product_type" asp-items="ViewBag.ProductTypeId">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.AluminumColorId" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <select asp-for="BillDetail.AluminumColorId" class="form-control form-control-sm" asp-items="ViewBag.AluminumColorId">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.AluminumGageId" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <select asp-for="BillDetail.AluminumGageId" class="form-control form-control-sm" asp-items="ViewBag.AluminumGageId">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.AllProduct.Name" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input asp-for="BillDetail.AllProduct.Name" autocomplete="off" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.AllProduct.Name" class="text-danger"></span>
+                    <div id="divProductsSerachResults"></div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.Rate" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input asp-for="BillDetail.Rate" value="2" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.Rate" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.Discount" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input asp-for="BillDetail.Discount" value="2" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.Discount" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.Feet" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input asp-for="BillDetail.Feet" value="2" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.Feet" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.Quantity" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input asp-for="BillDetail.Quantity" value="2" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.Quantity" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.TotalFeet" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input asp-for="BillDetail.TotalFeet" value="2" disabled="disabled" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.TotalFeet" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <label asp-for="BillDetail.NetAmount" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group">
+                    <input asp-for="BillDetail.NetAmount" value="2" disabled="disabled" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.NetAmount" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="BillDetail.DiscountedAmount" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input asp-for="BillDetail.DiscountedAmount" value="2" disabled="disabled" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.DiscountedAmount" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label asp-for="BillDetail.AmountToBePaid" class="control-label"></label>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <input asp-for="BillDetail.AmountToBePaid" value="2" disabled="disabled" class="form-control form-control-sm" />
+                    <span asp-validation-for="BillDetail.AmountToBePaid" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label asp-for="BillDetail.SheetHeight" class="control-label"></label>
-                        <input asp-for="BillDetail.SheetHeight" value="2" class="form-control" />
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input asp-for="BillDetail.SheetHeight" value="2" class="form-control form-control-sm" />
                         <span asp-validation-for="BillDetail.SheetHeight" class="text-danger"></span>
                     </div>
 
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label asp-for="BillDetail.SheetWidth" class="control-label"></label>
-                        <input asp-for="BillDetail.SheetWidth" value="2" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <input asp-for="BillDetail.SheetWidth" value="2" class="form-control form-control-sm" />
                         <span asp-validation-for="BillDetail.SheetWidth" class="text-danger"></span>
                     </div>
                 </div>
@@ -141,7 +208,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+        <div class="row">
                 <div class="col-12" id="divAddProducts">
                     @Html.Partial("_BillDetails", Model)
                 </div>
@@ -202,9 +269,25 @@
         function BillDetailSubmit() {
             $("#BillDetailForm").submit();
         }
-        $(document).ready(function () {
-
+        $("#BillDetail_Quantity, #BillDetail_Feet").on('keyup', function () {
+            Calculations()
         });
+
+        function Calculations() {
+            debugger;
+            var quantity = $("#BillDetail_Quantity").val() || 0;
+            var size = $("#BillDetail_Feet").val() || 0;
+            $("#BillDetail_TotalFeet").val(quantity * size);
+            var rate = $("#BillDetail_Rate").val() || 0;
+            var totalfeet = $("#BillDetail_TotalFeet").val() || 0;
+            $("#BillDetail_NetAmount").val(rate * totalfeet);
+            var netAmount = $("#BillDetail_NetAmount").val()||0;
+            var discount = $("#BillDetail_Discount").val() || 0;
+            var amtToBePaid = netAmount - (netAmount / 100) * discount;
+            var discountedAmount = netAmount - amtToBePaid;
+            $("#BillDetail_DiscountedAmount").val(discountedAmount);
+            $("#BillDetail_AmountToBePaid").val(amtToBePaid);
+        }
     </script>
 }
 @section Styles{

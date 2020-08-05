@@ -14,8 +14,10 @@ namespace Zedx.Models
         public long BillDetailId { get; set; }
         public long AllProductId { get; set; }
         public AllProduct AllProduct { get; set; }
+        [Display(Name = "Color")]
         public int? AluminumColorId { get; set; }
         public AluminumColor AluminumColor { get; set; }
+        [Display(Name ="Thickness")]
         public int? AluminumGageId { get; set; }
         public AluminumGage AluminumGage { get; set; }
         public float Rate { get; set; }
