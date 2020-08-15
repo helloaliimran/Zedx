@@ -10,8 +10,8 @@ using Zedx.Data;
 namespace Zedx.Migrations
 {
     [DbContext(typeof(ZedxContext))]
-    [Migration("20200712094729_BillAndBillDetail")]
-    partial class BillAndBillDetail
+    [Migration("20200813134530_local")]
+    partial class local
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -219,7 +219,7 @@ namespace Zedx.Migrations
 
             modelBuilder.Entity("Zedx.Models.AllProduct", b =>
                 {
-                    b.Property<long>("ProductId")
+                    b.Property<long>("AllProductId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("AluminumColorId")
@@ -252,7 +252,7 @@ namespace Zedx.Migrations
                     b.Property<float>("Rate")
                         .HasColumnType("real");
 
-                    b.HasKey("ProductId");
+                    b.HasKey("AllProductId");
 
                     b.HasIndex("AluminumColorId");
 
@@ -363,7 +363,7 @@ namespace Zedx.Migrations
                     b.Property<long>("BillDetailId")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("AllProductProductId")
+                    b.Property<long>("AllProductId")
                         .HasColumnType("bigint");
 
                     b.Property<int?>("AluminumColorId")
@@ -405,9 +405,6 @@ namespace Zedx.Migrations
                     b.Property<float>("NetAmount")
                         .HasColumnType("real");
 
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
                     b.Property<float>("Quantity")
                         .HasColumnType("real");
 
@@ -425,7 +422,7 @@ namespace Zedx.Migrations
 
                     b.HasKey("BillDetailId");
 
-                    b.HasIndex("AllProductProductId");
+                    b.HasIndex("AllProductId");
 
                     b.HasIndex("AluminumColorId");
 
@@ -455,6 +452,27 @@ namespace Zedx.Migrations
                     b.HasKey("CustomerId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Zedx.Models.MaintenanceCounter", b =>
+                {
+                    b.Property<int>("MaintenanceCounterId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ColumnName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Counter")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TableName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MaintenanceCounterId");
+
+                    b.ToTable("MaintenanceCounter");
                 });
 
             modelBuilder.Entity("Zedx.Models.ProductAluminum", b =>
@@ -622,7 +640,9 @@ namespace Zedx.Migrations
                 {
                     b.HasOne("Zedx.Models.AllProduct", "AllProduct")
                         .WithMany()
-                        .HasForeignKey("AllProductProductId");
+                        .HasForeignKey("AllProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Zedx.Models.AluminumColor", "AluminumColor")
                         .WithMany()

@@ -56,7 +56,7 @@ namespace Zedx.Controllers
         {
             ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "AluminumColorId");
             ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId");
-            ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId");
+
             return View();
         }
         public IActionResult Creates(long? billId)
@@ -65,17 +65,22 @@ namespace Zedx.Controllers
             ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
             ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerName");
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
+            ViewData["Bill"] = new SelectList(_context.Bill.Where(x => x.Deleted == false).OrderByDescending(x => x.BillId), "BillId", "BillId");
             BillandBillDetail billandBillDetail = new BillandBillDetail();
             BillDetail billDetail = new BillDetail();
             if (billId == null)
             {
                 billDetail.BillId = 0;
                 billandBillDetail.BillDetail = billDetail;
+                Bill bill = new Bill();
+                bill.BillId = 0;
+                billandBillDetail.Bill = bill;
                 return View(billandBillDetail);
             }
             billDetail.BillId = (long)billId;
             billandBillDetail.BillDetail = billDetail;
-            billandBillDetail.Bill = _context.Bill.Where(x => x.BillId == billId).FirstOrDefault();
+
+            billandBillDetail.Bill = _context.Bill.Where(x => x.BillId == billId).Include(x => x.Customers).FirstOrDefault();
             billandBillDetail.lbillDetail = _context.BillDetail.Include(x => x.AllProduct).Where(x => x.BillId == billId).ToList();
             return View(billandBillDetail);
         }
@@ -100,12 +105,12 @@ namespace Zedx.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Creates([Bind("BillDetailId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth")] BillDetail billDetail)
+        public async Task<IActionResult> Creates([Bind("BillDetailId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth,AllProductId")] BillDetail billDetail)
         {
-           
-                if (ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
-               
+
                 try
                 {
                     BillandBillDetail billandBillDetail = new BillandBillDetail();
@@ -123,18 +128,23 @@ namespace Zedx.Controllers
                         await _context.SaveChangesAsync();
                         billDetail.BillId = bill.BillId;
                     }
-                    billDetail.BillDetailId = MaintenanceCounterRepository.GetId(_context, "BillId", "Bill");
+                    billDetail.BillDetailId = MaintenanceCounterRepository.GetId(_context, "BillDetailId", "BillDetail");
                     billDetail.CreatedById = 100;
                     billDetail.CreatedDate = DateTime.Now;
                     _context.Add(billDetail);
                     await _context.SaveChangesAsync();
-                    billandBillDetail.BillDetail = billDetail;
                     billandBillDetail.Bill = _context.Bill.Where(x => x.BillId == billDetail.BillId).FirstOrDefault();
+                    CalculateBill(billandBillDetail.Bill);
+                    _context.Update(billandBillDetail.Bill);
+                    await _context.SaveChangesAsync();
+                    billandBillDetail.BillDetail = billDetail;
                     billandBillDetail.lbillDetail =
-                        _context.BillDetail.Include(x => x.AllProduct).Include(x => x.AluminumColor).Include(x => x.AluminumGage).
-                        Where(x => x.BillId == billDetail.BillId).ToList();
+                   _context.BillDetail.Include(x => x.AllProduct).Include(x => x.AluminumColor).Include(x => x.AluminumGage).
+                    Where(x => x.BillId == billDetail.BillId).ToList();
+                    
                     return PartialView("_BillDetails", billandBillDetail);
-                }
+
+                    }
                 catch (Exception e) { }
             }
 
@@ -236,26 +246,43 @@ namespace Zedx.Controllers
             return _context.BillDetail.Any(e => e.BillDetailId == id);
         }
 
-        public IActionResult ProductSerach() {
+        public IActionResult ProductSerach()
+        {
             string pName = Request.Query["productName"];
-            int pType =int.Parse(Request.Query["productType"]);
-            int pColor =int.Parse(Request.Query["aluminumColor"]);
-            int pGage =int.Parse(Request.Query["aluminumGage"]);
+            int pType = int.Parse(Request.Query["productType"]);
+            int pColor = int.Parse(Request.Query["aluminumColor"]);
+            int pGage = int.Parse(Request.Query["aluminumGage"]);
             List<AllProduct> result;
             if (pType == 1)
             {
-                 result = _context.AllProducts
-                                                .Include(x =>x.AluminumGage)
-                                                .Include(x=>x.AluminumColor)
-                                                .Where(x => (x.Name == pName && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
+                result = _context.AllProducts
+                                               .Include(x => x.AluminumGage)
+                                               .Include(x => x.AluminumColor)
+                                               .Where(x => (x.Name == pName && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
             }
             else
             {
                 result = _context.AllProducts
                                              .Include(x => x.ProductType)
-                                             .Where(x => x.Name == pName ).ToList();
+                                             .Where(x => x.Name == pName).ToList();
             }
             return PartialView("_ProductSearchResult", result);
+        }
+
+        public void CalculateBill(Bill bill)
+        {
+            var result = (from x in _context.BillDetail
+                         where x.BillId == bill.BillId
+                         group x by 1 into g
+                         select new
+                         {
+                             sumNetAmount = g.Sum(x => x.NetAmount),
+                             sumDistcounted = g.Sum(x => x.DiscountedAmount),
+                             sumAmountToBePaid = g.Sum(x => x.AmountToBePaid)
+                         }).FirstOrDefault();
+            bill.NetAmount = result.sumNetAmount;
+            bill.TotalDiscount = result.sumDistcounted;
+            bill.Total = result.sumAmountToBePaid;
         }
     }
 }

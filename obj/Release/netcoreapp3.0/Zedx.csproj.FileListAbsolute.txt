@@ -209,3 +209,5 @@ H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\staticwebassets\Z
 H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Zedx.dll
 H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Zedx.pdb
 H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Zedx.genruntimeconfig.cache
+H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\Shared\_BillFilter.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\Shared\_ProductSearchResult.cshtml.g.cs

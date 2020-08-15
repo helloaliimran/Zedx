@@ -1,75 +1,95 @@
 ﻿@model Zedx.Models.ViewModel.BillandBillDetail
-    <input type="hidden" value="@Model.BillDetail.BillId" name="BillDetail.BillId" id="BillDetail_BillId">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Color</th>
-                <th>Gage</th>
-                <th>Price</th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Discount</th>
-                <th>Feet</th>
-                <th>Height</th>
-                <th>Width</th>
-                <th>Net Amt</th>
-                <th>Dis Amt</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody class="tbodyBillDetail">
-            @if (Model.lbillDetail!=null)
-            {
+@*@Html.HiddenFor(x => x.BillDetail.BillId)*@
+<input type="hidden" value="@Model.BillDetail.BillId" name="BillDetail.BillId" id="BillDetail_BillId">
+@{ var row = 0; }
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Gage</th>
+            <th>Price</th>
+            <th>Size</th>
+            <th>Quantity</th>
+            <th>Discount</th>
+            <th>Feet</th>
+            <th>Height</th>
+            <th>Width</th>
+            <th>Net Amt</th>
+            <th>Dis Amt</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody class="tbodyBillDetail">
+        @if (Model.lbillDetail != null)
+        {
             @foreach (var item in Model.lbillDetail)
             {
-            <tr>
-                <td></td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AllProduct.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AluminumColor.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AluminumGage.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Rate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Feet)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Discount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalFeet)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SheetHeight)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SheetWidth)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NetAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiscountedAmount)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AmountToBePaid)
-                    @Html.HiddenFor(modelItem => item.Bill.BillId)
-                    @Html.HiddenFor(modelItem => item.Bill.CustomerId)
-                    @Html.HiddenFor(modelItem => item.BillDetailId)
-                </td>
-            </tr>
+                row++;
+                <tr>
+                    <td>@row</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AllProduct.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AluminumColor.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AluminumGage.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Feet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Discount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalFeet)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SheetHeight)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SheetWidth)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NetAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiscountedAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AmountToBePaid)
+                        @Html.HiddenFor(modelItem => item.Bill.BillId)
+                        @Html.HiddenFor(modelItem => item.Bill.CustomerId)
+                        @Html.HiddenFor(modelItem => item.BillDetailId)
+                    </td>
+                </tr>
             }
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="12"></td>
+            <td class="border-top border-dark">Total Amount</td>
+            <td class="border-top border-dark">@Model.Bill.NetAmount</td>
+        </tr>
+        <tr>
+            <td colspan="12"></td>
+            <td>Discounted Amount</td>
+            <td>@Model.Bill.TotalDiscount</td>
+        </tr>
+        <tr>
+            <td colspan="12"></td>
+            <td class="border-top border-dark">Final Amount</td>
+            <td class="border-top border-dark">@Model.Bill.Total</td>
+        </tr>
+    </tfoot>
+</table>

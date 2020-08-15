@@ -149,5 +149,17 @@ namespace Zedx.Controllers
         {
             return _context.Bill.Any(e => e.BillId == id);
         }
+        public async Task<IActionResult> BillSearchFilter(long? CustomerId)
+        {
+            if (CustomerId == null)
+                ViewData["Bill"] = new SelectList(_context.Bill.Where(x => x.Deleted == false).OrderByDescending(x => x.BillId), "BillId", "BillId");
+            else
+                ViewData["Bill"] = new SelectList(_context.Bill.Where(x => x.CustomerId == CustomerId && x.Deleted == false).OrderByDescending(x => x.BillId), "BillId", "BillId");
+
+            ViewData["Customers"] = new SelectList(_context.Customers, "AluminumGageId", "Name");
+
+            return PartialView("");
+        }
+
     }
 }

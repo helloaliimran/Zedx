@@ -389,3 +389,4 @@ H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDet
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Index.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BillDetails.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ProductSearchResult.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BillFilter.cshtml.g.cs

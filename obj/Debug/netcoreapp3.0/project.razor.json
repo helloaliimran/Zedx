@@ -14479,6 +14479,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Shared\\_BillFilter.cshtml",
+      "TargetPath": "Views\\Shared\\_BillFilter.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "h:\\ali softwares solutions\\zedx\\Zedx\\Views\\Administration\\EditUsersInRole.cshtml",
       "TargetPath": "Views\\Administration\\EditUsersInRole.cshtml",
       "FileKind": "mvc"
