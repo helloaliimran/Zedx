@@ -78,6 +78,7 @@ function clearProductInfo() {
     $("#BillDetail_AmountToBePaid").val("");
     $("#BillDetail_SheetHeight").val("");
     $("#BillDetail_SheetWidth").val("");
+    $("#BillDetail_BillDetailId").val(0);
 }
 
 function onSuccess() {
@@ -140,4 +141,66 @@ function BillDetailSubmit() {
         return;
     }
     $("#BillDetailForm").submit();
+}
+
+function RemoveProduct(elem) {
+    var row = $(elem).closest('tr');
+    
+    $.ajax({
+        url: '/BillDetail/RemoveProduct',
+        data: {
+            BillDetailId: row.find("#item_BillDetailId").val(),
+            BillId: row.find("#item_Bill_BillId").val()
+        },
+        success: function (data) {
+                row.remove();
+                $("#divAddProducts").html(data);
+                alert("item delete successfully!")
+            
+            
+        }
+    })
+  
+}
+
+function EditProduct(elem) {
+    FillFormForEdit(elem);
+}
+
+function FillFormForEdit(elem) {
+    var row= $(elem).closest('tr');
+    var objBillDetail =  {
+        BillDetailId: row.find("#item_BillDetailId").val(),
+        AllProductId:row.find("#item_AllProductId").val(),
+        AluminumColorId:row.find("#item_AluminumColorId").val(),
+        AluminumGageId:row.find("#item_AluminumGageId").val(),
+        Rate:$.trim(row.find(".rate").text()),
+        Discount: $.trim(row.find(".discount").text()),
+        Feet: $.trim(row.find(".feet").text()),
+        Quantity: $.trim(row.find(".quantity").text()),
+        TotalFeet: $.trim(row.find(".totalfeet").text()),
+        NetAmount: $.trim(row.find(".NetAmount").text()),
+        DiscountedAmount: $.trim(row.find(".discountAmount").text()),
+        AmountToBePaid: $.trim(row.find(".AmountTobePaid").text()),
+        SheetHeight: $.trim(row.find(".sheetHeight").text()),
+        SheetWidth: $.trim(row.find(".sheetWidth").text()),
+        ProductName: $.trim(row.find(".pName").text()),
+    }
+    $("#BillDetail_BillDetailId").val(objBillDetail.BillDetailId);
+    $("#BillDetail_AluminumColorId").val(objBillDetail.AluminumColorId);
+    $("#BillDetail_AluminumGageId").val(objBillDetail.AluminumGageId);
+    $("#BillDetail_AllProductId").val(objBillDetail.AllProductId);
+    $("#BillDetail_AllProduct_Name").val(objBillDetail.ProductName);
+    $("#BillDetail_Rate").val(objBillDetail.Rate);
+    $("#BillDetail_Discount").val(objBillDetail.Discount);
+    $("#BillDetail_Feet").val(objBillDetail.Feet);
+    $("#BillDetail_Quantity").val(objBillDetail.Quantity);
+    $("#BillDetail_TotalFeet").val(objBillDetail.TotalFeet);
+    $("#BillDetail_NetAmount").val(objBillDetail.NetAmount);
+    $("#BillDetail_DiscountedAmount").val(objBillDetail.DiscountedAmount);
+    $("#BillDetail_AmountToBePaid").val(objBillDetail.AmountToBePaid);
+    $("#BillDetail_SheetHeight").val(objBillDetail.SheetHeight);
+    $("#BillDetail_SheetWidth").val(objBillDetail.SheetWidth);
+    row.remove();
+    
 }

@@ -29,7 +29,7 @@
                 row++;
                 <tr>
                     <td>@row</td>
-                    <td>
+                    <td class="pName">
                         @Html.DisplayFor(modelItem => item.AllProduct.Name)
                     </td>
                     <td>
@@ -38,38 +38,58 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.AluminumGage.Name)
                     </td>
-                    <td>
+                    <td class="rate">
                         @Html.DisplayFor(modelItem => item.Rate)
                     </td>
-                    <td>
+                    <td class="feet">
                         @Html.DisplayFor(modelItem => item.Feet)
                     </td>
-                    <td>
+                    <td class="quantity">
                         @Html.DisplayFor(modelItem => item.Quantity)
                     </td>
-                    <td>
+                    <td class="discount">
                         @Html.DisplayFor(modelItem => item.Discount)
                     </td>
-                    <td>
+                    <td class="totalfeet">
                         @Html.DisplayFor(modelItem => item.TotalFeet)
                     </td>
-                    <td>
+                    <td class="sheetHeight">
                         @Html.DisplayFor(modelItem => item.SheetHeight)
                     </td>
-                    <td>
+                    <td class="sheetWidth">
                         @Html.DisplayFor(modelItem => item.SheetWidth)
                     </td>
-                    <td>
+                    <td class="NetAmount">
                         @Html.DisplayFor(modelItem => item.NetAmount)
                     </td>
-                    <td>
+                    <td class="discountAmount">
                         @Html.DisplayFor(modelItem => item.DiscountedAmount)
                     </td>
-                    <td>
+                    <td class="AmountTobePaid">
                         @Html.DisplayFor(modelItem => item.AmountToBePaid)
+
+                    </td>
+                    <td>
+                        <div class="row justify-content-end">
+                            <span class="col-md-4 col" title="remove product" onclick="RemoveProduct(this)">
+                                <svg width="1em" height="1em" viewBox="0 0 20 20" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                </svg>
+                            </span>
+                            <span class="col-md-4" title="Edit product" onclick="EditProduct(this)">
+                                <svg width="1em" height="1em" viewBox="0 0 20 20" class="bi bi-pencil" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M11.293 1.293a1 1 0 0 1 1.414 0l2 2a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-.39.242l-3 1a1 1 0 0 1-1.266-1.265l1-3a1 1 0 0 1 .242-.391l9-9zM12 2l2 2-9 9-3 1 1-3 9-9z" />
+                                    <path fill-rule="evenodd" d="M12.146 6.354l-2.5-2.5.708-.708 2.5 2.5-.707.708zM3 10v.5a.5.5 0 0 0 .5.5H4v.5a.5.5 0 0 0 .5.5H5v.5a.5.5 0 0 0 .5.5H6v-1.5a.5.5 0 0 0-.5-.5H5v-.5a.5.5 0 0 0-.5-.5H3z" />
+                                </svg>
+                            </span>
+                        </div>
                         @Html.HiddenFor(modelItem => item.Bill.BillId)
                         @Html.HiddenFor(modelItem => item.Bill.CustomerId)
                         @Html.HiddenFor(modelItem => item.BillDetailId)
+                        @Html.HiddenFor(modelItem => item.AllProductId)
+                        @Html.HiddenFor(modelItem => item.AluminumColorId)
+                        @Html.HiddenFor(modelItem => item.AluminumGageId)
                     </td>
                 </tr>
             }
