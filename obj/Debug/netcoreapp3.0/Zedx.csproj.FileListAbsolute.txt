@@ -390,3 +390,9 @@ H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDet
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BillDetails.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ProductSearchResult.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_BillFilter.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\MaintenanceCounter\Create.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\MaintenanceCounter\Delete.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\MaintenanceCounter\Details.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\MaintenanceCounter\Edit.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\MaintenanceCounter\Index.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillPrint\Index.cshtml.g.cs

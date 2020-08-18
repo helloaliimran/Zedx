@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Zedx.Data;
 using Zedx.Models;
+using Zedx.Models.Common;
 
 namespace Zedx.Controllers
 {
@@ -35,6 +36,7 @@ namespace Zedx.Controllers
             }
 
             var allProduct = await _context.AllProducts
+                .Where(a=>a.Deleted==false)
                 .Include(a => a.AluminumColor)
                 .Include(a => a.AluminumGage)
                 .Include(a => a.ProductType)
@@ -61,17 +63,20 @@ namespace Zedx.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AllProductId,Name,Rate,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
+        public async Task<IActionResult> Create([Bind("Name,Rate,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
         {
             if (ModelState.IsValid)
-            {
+            {   allProduct.AllProductId= MaintenanceCounterRepository.GetId(_context, "AllProductId", "AllProduct");
+                allProduct.Deleted = false;
+                allProduct.CreatedDate = DateTime.Now;
+                allProduct.CreatedById = 100;
                 _context.Add(allProduct);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "AluminumColorId", allProduct.AluminumColorId);
-            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId", allProduct.AluminumGageId);
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "ProductTypeId", allProduct.ProductTypeId);
+            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
+            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
             return View(allProduct);
         }
 
@@ -88,9 +93,9 @@ namespace Zedx.Controllers
             {
                 return NotFound();
             }
-            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "AluminumColorId", allProduct.AluminumColorId);
-            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId", allProduct.AluminumGageId);
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "ProductTypeId", allProduct.ProductTypeId);
+            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
+            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
             return View(allProduct);
         }
 
@@ -99,7 +104,7 @@ namespace Zedx.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("ProductId,Name,Rate,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
+        public async Task<IActionResult> Edit(long id, [Bind("AllProductId,Name,Rate,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
         {
             if (id != allProduct.AllProductId)
             {
@@ -110,6 +115,8 @@ namespace Zedx.Controllers
             {
                 try
                 {
+                    allProduct.ModifiedById = 100;
+                    allProduct.ModifiedDate = DateTime.Now;
                     _context.Update(allProduct);
                     await _context.SaveChangesAsync();
                 }
@@ -126,9 +133,9 @@ namespace Zedx.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "AluminumColorId", allProduct.AluminumColorId);
-            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId", allProduct.AluminumGageId);
-            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "ProductTypeId", allProduct.ProductTypeId);
+            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
+            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "Name");
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
             return View(allProduct);
         }
 
@@ -159,7 +166,10 @@ namespace Zedx.Controllers
         public async Task<IActionResult> DeleteConfirmed(long id)
         {
             var allProduct = await _context.AllProducts.FindAsync(id);
-            _context.AllProducts.Remove(allProduct);
+            allProduct.Deleted = true;
+            allProduct.ModifiedById = 100;
+            allProduct.ModifiedDate = DateTime.Now;
+            _context.AllProducts.Update(allProduct);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

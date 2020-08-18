@@ -23,42 +23,6 @@ namespace Zedx.Controllers
             _context = context;
         }
 
-        // GET: BillDetail
-        public async Task<IActionResult> Index()
-        {
-            var zedxContext = _context.BillDetail.Include(b => b.AluminumColor).Include(b => b.AluminumGage).Include(b => b.Bill);
-            return View(await zedxContext.ToListAsync());
-        }
-
-        // GET: BillDetail/Details/5
-        public async Task<IActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var billDetail = await _context.BillDetail
-                .Include(b => b.AluminumColor)
-                .Include(b => b.AluminumGage)
-                .Include(b => b.Bill)
-                .FirstOrDefaultAsync(m => m.BillDetailId == id);
-            if (billDetail == null)
-            {
-                return NotFound();
-            }
-
-            return View(billDetail);
-        }
-
-        // GET: BillDetail/Create
-        public IActionResult Create()
-        {
-            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "AluminumColorId");
-            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId");
-
-            return View();
-        }
         public async Task<IActionResult> Creates(long? billId, long? billDetailId)
         {
             ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "Name");
@@ -92,24 +56,7 @@ namespace Zedx.Controllers
             return View(billandBillDetail);
         }
 
-        // POST: BillDetail/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BillDetailId,ProductId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted")] BillDetail billDetail)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(billDetail);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["AluminumColorId"] = new SelectList(_context.AluminumColor, "AluminumColorId", "AluminumColorId", billDetail.AluminumColorId);
-            ViewData["AluminumGageId"] = new SelectList(_context.AluminumGage, "AluminumGageId", "AluminumGageId", billDetail.AluminumGageId);
-            ViewData["BillId"] = new SelectList(_context.Bill, "BillId", "BillId", billDetail.BillId);
-            return View(billDetail);
-        }
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Creates([Bind("BillDetailId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth,AllProductId")] BillDetail billDetail)

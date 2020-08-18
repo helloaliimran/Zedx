@@ -16,7 +16,7 @@ namespace Zedx.Models
         public float TotalDiscount { get; set; }
         public float Total { get; set; }
         public long CustomerId { get; set; }
-        public Customers Customers { get; set; }
+        public  Customers Customers { get; set; }
         public long CreatedById { get; set; }
         public long? ModifiedById { get; set; }
         public DateTime CreatedDate { get; set; }

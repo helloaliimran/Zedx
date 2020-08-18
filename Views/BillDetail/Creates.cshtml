@@ -209,8 +209,8 @@
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#BillSearchModal">
                             Bill Search
                         </button>
-
                         <a class="btn btn-primary btn-sm" href="/BillDetail/Creates" role="button">New</a>
+                        <input type="button" value="Print" onclick="BillPrint()" class="btn btn-primary btn-sm" />
                     </div>
                 </div>
             </div>
@@ -224,9 +224,7 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

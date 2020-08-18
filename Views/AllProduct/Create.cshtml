@@ -13,11 +13,6 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="AllProductId" class="control-label"></label>
-                <input asp-for="AllProductId" class="form-control" />
-                <span asp-validation-for="AllProductId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
@@ -28,31 +23,22 @@
                 <span asp-validation-for="Rate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreatedById" class="control-label"></label>
-                <input asp-for="CreatedById" class="form-control" />
-                <span asp-validation-for="CreatedById" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            @*<div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Deleted" /> @Html.DisplayNameFor(model => model.Deleted)
-                </label>
-            </div>*@
-            <div class="form-group">
                 <label asp-for="ProductTypeId" class="control-label"></label>
-                <select asp-for="ProductTypeId" class ="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                <select asp-for="ProductTypeId" class ="form-control" asp-items="ViewBag.ProductTypeId">
+                    <option></option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="AluminumColorId" class="control-label"></label>
-                <select asp-for="AluminumColorId" class ="form-control" asp-items="ViewBag.AluminumColorId"></select>
+                <select asp-for="AluminumColorId" class="form-control" asp-items="ViewBag.AluminumColorId">
+                    <option></option>
+                </select>
             </div>
             <div class="form-group">
                 <label asp-for="AluminumGageId" class="control-label"></label>
-                <select asp-for="AluminumGageId" class ="form-control" asp-items="ViewBag.AluminumGageId"></select>
+                <select asp-for="AluminumGageId" class="form-control" asp-items="ViewBag.AluminumGageId">
+                    <option></option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

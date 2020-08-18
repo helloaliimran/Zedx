@@ -1,23 +1,24 @@
 ﻿@model Zedx.Models.ViewModel.BillandBillDetail
 @*@Html.HiddenFor(x => x.BillDetail.BillId)*@
+
 <input type="hidden" value="@Model.BillDetail.BillId" name="BillDetail.BillId" id="BillDetail_BillId">
 @{ var row = 0; }
-<table class="table table-striped">
+<table class="table table-sm table-striped">
     <thead>
         <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Color</th>
+            <th>Col</th>
             <th>Gage</th>
             <th>Price</th>
             <th>Size</th>
-            <th>Quantity</th>
-            <th>Discount</th>
+            <th>Qty</th>
+            <th>%</th>
             <th>Feet</th>
-            <th>Height</th>
-            <th>Width</th>
-            <th>Net Amt</th>
-            <th>Dis Amt</th>
+            <th class="thHeight" title="height">H</th>
+            <th class="thwidth" title="width">W</th>
+            <th>Net.</th>
+            <th>Dis.</th>
             <th>Total</th>
         </tr>
     </thead>
@@ -69,7 +70,7 @@
                         @Html.DisplayFor(modelItem => item.AmountToBePaid)
 
                     </td>
-                    <td>
+                    <td class="tdAction">
                         <div class="row justify-content-end">
                             <span class="col-md-4 col" title="remove product" onclick="RemoveProduct(this)">
                                 <svg width="1em" height="1em" viewBox="0 0 20 20" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -97,17 +98,23 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="12"></td>
+            <td class="thHeight"></td>
+            <td class="thwidth"></td>
+            <td colspan="10"></td>
             <td class="border-top border-dark">Total Amount</td>
             <td class="border-top border-dark">@Model.Bill.NetAmount</td>
         </tr>
         <tr>
-            <td colspan="12"></td>
+            <td class="thHeight"></td>
+            <td class="thwidth"></td>
+            <td colspan="10"></td>
             <td>Discounted Amount</td>
             <td>@Model.Bill.TotalDiscount</td>
         </tr>
         <tr>
-            <td colspan="12"></td>
+            <td class="thHeight"></td>
+            <td class="thwidth"></td>
+            <td colspan="10"></td>
             <td class="border-top border-dark">Final Amount</td>
             <td class="border-top border-dark">@Model.Bill.Total</td>
         </tr>
