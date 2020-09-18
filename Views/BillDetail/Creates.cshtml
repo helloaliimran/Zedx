@@ -210,7 +210,16 @@
                             Bill Search
                         </button>
                         <a class="btn btn-primary btn-sm" href="/BillDetail/Creates" role="button">New</a>
-                        <input type="button" value="Print" onclick="BillPrint()" class="btn btn-primary btn-sm" />
+                        <input type="button" value="Print" onclick="BillPrint('A4')" class="btn btn-primary btn-sm" />
+                        <div class="input-group-prepend" style="display:none">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Print</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item"onclick="BillPrint('A4')">A4</a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" onclick="BillPrint('A5')">A5</a>
+                              
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

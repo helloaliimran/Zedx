@@ -36,7 +36,7 @@ namespace Zedx.Controllers
             }
 
             var allProduct = await _context.AllProducts
-                .Where(a=>a.Deleted==false)
+                .Where(a => a.Deleted == false)
                 .Include(a => a.AluminumColor)
                 .Include(a => a.AluminumGage)
                 .Include(a => a.ProductType)
@@ -66,7 +66,8 @@ namespace Zedx.Controllers
         public async Task<IActionResult> Create([Bind("Name,Rate,ProductTypeId,AluminumColorId,AluminumGageId")] AllProduct allProduct)
         {
             if (ModelState.IsValid)
-            {   allProduct.AllProductId= MaintenanceCounterRepository.GetId(_context, "AllProductId", "AllProduct");
+            {
+                allProduct.AllProductId = MaintenanceCounterRepository.GetId(_context, "AllProductId", "AllProduct");
                 allProduct.Deleted = false;
                 allProduct.CreatedDate = DateTime.Now;
                 allProduct.CreatedById = 100;
@@ -98,6 +99,7 @@ namespace Zedx.Controllers
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
             return View(allProduct);
         }
+
 
         // POST: AllProduct/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -138,6 +140,23 @@ namespace Zedx.Controllers
             ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "ProductTypeId", "name");
             return View(allProduct);
         }
+        [HttpGet]
+        public async Task<IActionResult> EditOnlyPrice(long id, float rate)
+        {
+            AllProduct allProduct = new AllProduct();
+            try
+            {
+                allProduct = _context.AllProducts.Find(id);
+                allProduct.Rate = rate;
+                allProduct.ModifiedById = 100;
+                allProduct.ModifiedDate = DateTime.Now;
+                _context.Update(allProduct);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception e) { }
+            return RedirectToAction(nameof(Index));
+        }
+
 
         // GET: AllProduct/Delete/5
         public async Task<IActionResult> Delete(long? id)
@@ -177,6 +196,71 @@ namespace Zedx.Controllers
         private bool AllProductExists(long id)
         {
             return _context.AllProducts.Any(e => e.AllProductId == id);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(string category, string query)
+        {
+
+            if (category == "name")
+            {
+                var zedxContext = _context.AllProducts.Where(a => a.Name == query && a.Deleted == false)
+                      .Include(a => a.AluminumColor)
+                      .Include(a => a.AluminumGage)
+                      .Include(a => a.ProductType);
+                return View(await zedxContext.ToListAsync());
+            }
+            else if (category == "Aluminum")
+            {
+                var zedxContext = _context.AllProducts.Where(a =>  a.Deleted == false)
+                  .Include(a => a.AluminumColor)
+                  .Include(a => a.AluminumGage)
+                  .Include(a => a.ProductType).Where(a => a.Name == "Aluminum");
+                return View(await zedxContext.ToListAsync());
+            }
+            else if (category == "Thickness")
+            {
+                var zedxContext = _context.AllProducts.Where(a =>  a.Deleted == false)
+                  .Include(a => a.AluminumColor)
+                  .Include(a => a.AluminumGage).Where(a => a.Name == query)
+                  .Include(a => a.ProductType);
+                return View(await zedxContext.ToListAsync());
+            }
+            else if (category == "Color")
+            {
+                var zedxContext = _context.AllProducts.Where( a =>  a.Deleted == false)
+                  .Include(a => a.AluminumColor).Where(a => a.Name == query)
+                  .Include(a => a.AluminumGage)
+                  .Include(a => a.ProductType);
+                return View(await zedxContext.ToListAsync());
+            }
+            else if (category == "Glass")
+            {
+                var zedxContext = _context.AllProducts.Where(a => a.Deleted == false)
+                  .Include(a => a.AluminumColor)
+                  .Include(a => a.AluminumGage)
+                  .Include(a => a.ProductType).Where(a => a.Name == "Glass");
+                return View(await zedxContext.ToListAsync());
+            }
+
+            else if (category == "Hardware")
+            {
+                var zedxContext = _context.AllProducts.Where(a =>  a.Deleted == false)
+                  .Include(a => a.AluminumColor)
+                  .Include(a => a.AluminumGage)
+                  .Include(a => a.ProductType).Where(a => a.Name == "Hardware");
+                return View(await zedxContext.ToListAsync());
+            }
+            else
+            {
+                var zedxContext = _context.AllProducts.Include(a => a.AluminumColor).Include(a => a.AluminumGage).Include(a => a.ProductType);
+                return View(await zedxContext.ToListAsync());
+
+            }
+
+
+
+
         }
     }
 }

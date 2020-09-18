@@ -205,8 +205,14 @@ function FillFormForEdit(elem) {
     
 }
 
-function BillPrint() {
+function BillPrint(Printtype) {
+    debugger;
     var billId = $("#Bill_BillId").val();
-    var url = "/BillPrint/Index/" + billId;
+    var url = "";
+    if (Printtype == "A5") 
+        url = "/BillPrint/A5/" + billId;
+    else
+        url = "/BillPrint/index/" + billId;
+
     window.open(url, "_blank");
 }

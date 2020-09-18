@@ -3,12 +3,27 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" onclick="ProductSearch('name')" href="#">Name</a>
+            <div role="separator"  class="dropdown-divider"></div>
+            <a class="dropdown-item" onclick="ProductSearch('Aluminum')">Aluminum</a>
+            <a class="dropdown-item" onclick="ProductSearch('Thickness')">Thickness</a>
+            <a class="dropdown-item" onclick="ProductSearch('Color')">Color</a>
+            <div role="separator" class="dropdown-divider"></div>
+            <a class="dropdown-item" onclick="ProductSearch('Glass')">Glass</a>
+            <a class="dropdown-item" onclick="ProductSearch('Hardware')">Hardware</a>
+        </div>
+    </div>
+    <input type="text" id="txtSearch" class="form-control" aria-label="Text input with dropdown button">
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -31,29 +46,46 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductType.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AluminumColor.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AluminumGage.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.AllProductId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.AllProductId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.AllProductId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <input type="hidden" asp-for="@item.AllProductId" />
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="rate">
+                <input asp-for="@item.Rate" class="form-control " />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductType.name)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AluminumColor.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AluminumGage.Name)
+                </td>
+                <td>
+                    
+                    <a onclick="updateRateOnly(this)">Rate</a>|
+                    <a asp-action="Edit" asp-route-id="@item.AllProductId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.AllProductId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.AllProductId">Delete</a>
+                    
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<script>
+    function updateRateOnly(elem){
+        var rate=$(elem).closest('tr').find('#item_Rate').val();
+        var id=$(elem).closest('tr').find('#item_AllProductId').val();
+        window.location.href="EditOnlyPrice/"+id+"?rate="+rate;
+    }
+    function ProductSearch(category){
+        var query= $.trim($("#txtSearch").val());
+        window.location.href="Index?category="+category+"&query="+query;
+    }
+</script>

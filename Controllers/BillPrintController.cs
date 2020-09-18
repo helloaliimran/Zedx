@@ -18,15 +18,15 @@ namespace Zedx.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(long id)
+        private BillandBillDetail GetBillandBillDetail(long id)
         {
             BillandBillDetail billandBillDetail = new BillandBillDetail();
             billandBillDetail.BillDetail = new BillDetail();
             billandBillDetail.BillDetail.BillDetailId = 0;
             billandBillDetail.Bill = _context.Bill
                 .FirstOrDefault(x => x.BillId == id);
-            billandBillDetail.Bill.Customers=_context.Customers.FirstOrDefault(x => x.CustomerId == billandBillDetail.Bill.CustomerId);
-            
+            billandBillDetail.Bill.Customers = _context.Customers.FirstOrDefault(x => x.CustomerId == billandBillDetail.Bill.CustomerId);
+
             billandBillDetail.lbillDetail =
                     _context.BillDetail
                    .Include(x => x.AllProduct)
@@ -34,7 +34,17 @@ namespace Zedx.Controllers
                    .Include(x => x.AluminumGage)
                    .Where(x => x.BillId == id && x.Deleted == false)
                    .ToList();
-            return View(billandBillDetail);
+            return billandBillDetail;
+        }
+        //A4
+        public IActionResult Index(long id)
+        {
+            return View(GetBillandBillDetail(id));
+        }
+        //A5
+        public IActionResult A5(long id)
+        {
+            return View(GetBillandBillDetail(id));
         }
     }
 }
