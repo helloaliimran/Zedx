@@ -1,5 +1,5 @@
-﻿@model IEnumerable<Zedx.Models.AluminumColor>
-
+﻿@*@model IEnumerable<Zedx.Models.DTO.AluminumProductDto>*@
+@model List<string>
 @{
     ViewData["Title"] = "Index";
 }
@@ -12,17 +12,28 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Rate)
+            </th>*@
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            @*@Html.Partial("~/Views/Shared/_AluminumColor.cshtml",item);*@
-            @Html.DisplayFor(model => item.Name);
+
+        <tr>
+            @*<td>@Html.DisplayFor(model => item.Name)</td>
+        <td>@Html.DisplayFor(model => item.Color)</td>
+        <td>@Html.DisplayFor(model => item.Rate)</td>*@
+           <td> @item</td>
+        </tr>
+
         }
     </tbody>
 </table>

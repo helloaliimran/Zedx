@@ -1,7 +1,8 @@
-﻿@model Zedx.Models.ViewModel.BillandBillDetail
+﻿@model Zedx.Models.DTO.BillRequest
 @*@Html.HiddenFor(x => x.BillDetail.BillId)*@
 
-<input type="hidden" value="@Model.BillDetail.BillId" name="BillDetail.BillId" id="BillDetail_BillId">
+<input type="hidden" value="@Model.BillId" name="BillId" id="BillId">
+<input type="hidden" value="@Model.CustomerId" name="BillId" id="CustomerId">
 @{ var row = 0; }
 <table class="table table-sm table-striped">
     <thead>
@@ -23,21 +24,21 @@
         </tr>
     </thead>
     <tbody class="tbodyBillDetail">
-        @if (Model.lbillDetail != null)
+        @if (Model.BillProducts != null)
         {
-            @foreach (var item in Model.lbillDetail)
+            @foreach (var item in Model.BillProducts)
             {
                 row++;
                 <tr>
                     <td>@row</td>
                     <td class="pName">
-                        @Html.DisplayFor(modelItem => item.AllProduct.Name)
+                        @Html.DisplayFor(modelItem => item.ProductName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AluminumColor.Name)
+                        @Html.DisplayFor(modelItem => item.ColorName)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AluminumGage.Name)
+                        @Html.DisplayFor(modelItem => item.GageName)
                     </td>
                     <td class="rate">
                         @Html.DisplayFor(modelItem => item.Rate)
@@ -85,12 +86,12 @@
                                 </svg>
                             </span>
                         </div>
-                        @Html.HiddenFor(modelItem => item.Bill.BillId)
-                        @Html.HiddenFor(modelItem => item.Bill.CustomerId)
+
                         @Html.HiddenFor(modelItem => item.BillDetailId)
                         @Html.HiddenFor(modelItem => item.AllProductId)
                         @Html.HiddenFor(modelItem => item.AluminumColorId)
                         @Html.HiddenFor(modelItem => item.AluminumGageId)
+                       
                     </td>
                 </tr>
             }
@@ -102,21 +103,20 @@
             <td class="thwidth"></td>
             <td colspan="9"></td>
             <td colspan="2" class="border-top border-dark">Total Amount</td>
-            <td class="border-top border-dark">@Model.Bill.NetAmount</td>
+            <td class="border-top border-dark">@Model.NetAmount</td>
         </tr>
         <tr>
             <td class="thHeight"></td>
             <td class="thwidth"></td>
             <td colspan="9"></td>
             <td colspan="2">Discounted Amount</td>
-            <td>@Model.Bill.TotalDiscount</td>
+            <td>@Model.TotalDiscount</td>
         </tr>
-        <tr>
-            <td class="thHeight"></td>
+        <tr><td class="thHeight"></td>
             <td class="thwidth"></td>
             <td colspan="9"></td>
             <td colspan="2" class="border-top border-dark">Final Amount</td>
-            <td class="border-top border-dark">@Model.Bill.Total</td>
+            <td class="border-top border-dark">@Model.Total</td>
         </tr>
     </tfoot>
 </table>

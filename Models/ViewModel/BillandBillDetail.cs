@@ -6,6 +6,6 @@ namespace Zedx.Models.ViewModel
     {
         public Bill Bill { get; set; }
         public BillDetail BillDetail { get; set; }
-        public List<BillDetail> lbillDetail { get; set; }
+        public List<BillDetail>? lbillDetail { get; set; }
     }
 }

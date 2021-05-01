@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -23,7 +25,35 @@ namespace Zedx.Controllers
         // GET: AllProduct
         public async Task<IActionResult> Index()
         {
-            var zedxContext = _context.AllProducts.Include(a => a.AluminumColor).Include(a => a.AluminumGage).Include(a => a.ProductType);
+            var zedxContext = _context.AllProducts
+                                .Include(a => a.AluminumColor)
+                                .Include(a => a.AluminumGage)
+                                .Include(a => a.ProductType);
+            var zedxContext1 =
+          (_context.AllProducts
+              .Include(a => a.AluminumColor)
+              .Include(a => a.AluminumGage)
+              .Include(a => a.ProductType));
+
+            var table = _context.AllProducts.ToPivotTable(
+                item => item.AluminumColorId,
+                item => item.Name,
+                items => items.Any() ? items.First().Name : null);
+            var t = zedxContext1;
+            return View(await zedxContext.ToListAsync());
+        }
+        public async Task<IActionResult> AluminumProduct()
+        {
+            var zedxContext =
+            (_context.AllProducts
+                .Include(a => a.AluminumColor)
+                .Include(a => a.AluminumGage)
+                .Include(a => a.ProductType));
+
+            var table = _context.AllProducts.ToPivotTable(
+                item => item.AluminumColorId,
+                item => item.Name,
+                items => items.Any() ? items.First().Name : null);
             return View(await zedxContext.ToListAsync());
         }
 
@@ -67,7 +97,7 @@ namespace Zedx.Controllers
         {
             if (ModelState.IsValid)
             {
-                allProduct.AllProductId = MaintenanceCounterRepository.GetId(_context, "AllProductId", "AllProduct");
+                allProduct.AllProductId = MaintenanceCounterRepository.GetId(_context, "AllProductId", "AllProducts");
                 allProduct.Deleted = false;
                 allProduct.CreatedDate = DateTime.Now;
                 allProduct.CreatedById = 100;
@@ -212,7 +242,7 @@ namespace Zedx.Controllers
             }
             else if (category == "Aluminum")
             {
-                var zedxContext = _context.AllProducts.Where(a =>  a.Deleted == false)
+                var zedxContext = _context.AllProducts.Where(a => a.Deleted == false)
                   .Include(a => a.AluminumColor)
                   .Include(a => a.AluminumGage)
                   .Include(a => a.ProductType).Where(a => a.Name == "Aluminum");
@@ -220,7 +250,7 @@ namespace Zedx.Controllers
             }
             else if (category == "Thickness")
             {
-                var zedxContext = _context.AllProducts.Where(a =>  a.Deleted == false)
+                var zedxContext = _context.AllProducts.Where(a => a.Deleted == false)
                   .Include(a => a.AluminumColor)
                   .Include(a => a.AluminumGage).Where(a => a.Name == query)
                   .Include(a => a.ProductType);
@@ -228,7 +258,7 @@ namespace Zedx.Controllers
             }
             else if (category == "Color")
             {
-                var zedxContext = _context.AllProducts.Where( a =>  a.Deleted == false)
+                var zedxContext = _context.AllProducts.Where(a => a.Deleted == false)
                   .Include(a => a.AluminumColor).Where(a => a.Name == query)
                   .Include(a => a.AluminumGage)
                   .Include(a => a.ProductType);
@@ -245,7 +275,7 @@ namespace Zedx.Controllers
 
             else if (category == "Hardware")
             {
-                var zedxContext = _context.AllProducts.Where(a =>  a.Deleted == false)
+                var zedxContext = _context.AllProducts.Where(a => a.Deleted == false)
                   .Include(a => a.AluminumColor)
                   .Include(a => a.AluminumGage)
                   .Include(a => a.ProductType).Where(a => a.Name == "Hardware");
@@ -261,6 +291,48 @@ namespace Zedx.Controllers
 
 
 
+        }
+
+
+        
+    }
+    public static class Temp
+    {
+        public static DataTable ToPivotTable<T, TColumn, TRow, TData>(
+            this IEnumerable<T> source,
+            Func<T, TColumn> columnSelector,
+            Expression<Func<T, TRow>> rowSelector,
+            Func<IEnumerable<T>, TData> dataSelector)
+        {
+
+            DataTable table = new DataTable();
+            var rowName = ((MemberExpression)rowSelector.Body).Member.Name;
+            table.Columns.Add(new DataColumn(rowName));
+            var columns = source.Select(columnSelector).Distinct();
+
+            foreach (var column in columns)
+                table.Columns.Add(new DataColumn(column.ToString()));
+
+            var rows = source.GroupBy(rowSelector.Compile())
+                             .Select(rowGroup => new {
+                                 Key = rowGroup.Key,
+                                 Values = columns.GroupJoin(
+                                     rowGroup,
+                                     c => c,
+                                     r => columnSelector(r),
+                                     (c, columnGroup) => dataSelector(columnGroup))
+                             });
+
+            foreach (var row in rows)
+            {
+                var dataRow = table.NewRow();
+                var items = row.Values.Cast<object>().ToList();
+                items.Insert(0, row.Key);
+                dataRow.ItemArray = items.ToArray();
+                table.Rows.Add(dataRow);
+            }
+
+            return table;
         }
     }
 }

@@ -2,7 +2,7 @@
     ActiveProductSearch();
 });
 
-$("#BillDetail_AllProduct_Name").on('keyup', function (e) {
+$("#ProductName").on('keyup', function (e) {
     var code = e.key;
     if (code === "Enter")
         LoadProductsddl();
@@ -12,7 +12,7 @@ $("#BillDetail_AllProduct_Name").on('keyup', function (e) {
 
 });
 
-$("#BillDetail_Quantity, #BillDetail_Feet, #BillDetail_Rate, #BillDetail_Discount").on('keyup', function () {
+$("#Quantity, #Feet, #Rate, #Discount").on('keyup', function () {
     Calculations()
 });
 
@@ -38,76 +38,73 @@ $("#product_type").on('change', function () {
     }
 });
 
-$("#BillDetail_AluminumColorId, #BillDetail_AluminumGageId, #product_type").on("change", function () {
+$("#AluminumColorId, #AluminumGageId, #product_type").on("change", function () {
     ActiveProductSearch();
 });
 
 function ActiveProductSearch() {
     if ($("#product_type").val() == 1) {
-        if ($("#BillDetail_AluminumColorId").val() != "" && $("#BillDetail_AluminumGageId").val() != "") {
-            $("#BillDetail_AllProduct_Name").prop("disabled", "");
+        if ($("#AluminumColorId").val() != "" && $("#AluminumGageId").val() != "") {
+            $("#ProductName").prop("disabled", "");
         }
         else {
-            $("#BillDetail_AllProduct_Name").prop("disabled", "true");
-            $("#BillDetail_AllProduct_Name").val("");
-            $("#BillDetail_Rate").val("");
+            $("#ProductName").prop("disabled", "true");
+            $("#ProductName").val("");
+            $("#Rate").val("");
         }
     }
     else if ($("#product_type").val() == "") {
-        $("#BillDetail_AllProduct_Name").prop("disabled", "true");
-        $("#BillDetail_AllProduct_Name").val("");
-        $("#BillDetail_Rate").val("");
+        $("#ProductName").prop("disabled", "true");
+        $("#ProductName").val("");
+        $("#Rate").val("");
     }
     else {
-        $("#BillDetail_AllProduct_Name").prop("disabled", "");
-        $("#BillDetail_AllProduct_Name").val("");
-        $("#BillDetail_Rate").val("");
+        $("#ProductName").prop("disabled", "");
+        $("#ProductName").val("");
+        $("#Rate").val("");
     }
 }
 
 function clearProductInfo() {
-    $("#BillDetail_AllProduct_Name").val("");
-    $("#BillDetail_AllProductId").val("");
-    $("#BillDetail_Rate").val("");
-    $("#BillDetail_Discount").val("");
-    $("#BillDetail_Feet").val("");
-    $("#BillDetail_Quantity").val("");
-    $("#BillDetail_TotalFeet").val("");
-    $("#BillDetail_NetAmount").val("");
-    $("#BillDetail_DiscountedAmount").val("");
-    $("#BillDetail_AmountToBePaid").val("");
-    $("#BillDetail_SheetHeight").val("");
-    $("#BillDetail_SheetWidth").val("");
-    $("#BillDetail_BillDetailId").val(0);
+    $("#ProductName").val("");
+    $("#AllProductId").val("");
+    $("#Rate").val("");
+    $("#Discount").val("");
+    $("#Feet").val("");
+    $("#Quantity").val("");
+    $("#TotalFeet").val("");
+    $("#NetAmount").val("");
+    $("#DiscountedAmount").val("");
+    $("#AmountToBePaid").val("");
+    $("#SheetHeight").val("");
+    $("#SheetWidth").val("");
+    $("#BillDetailId").val(0);
 }
 
 function onSuccess() {
-    $("#lblBillId").text($("#BillDetail_BillId").val());
-    if ($("#Bill_BillId").val() == 0) {
-        $("#Bill_BillId").val($("#BillDetail_BillId").val())
-    }
+    $("#lblBillId").text($("#BillId").val());
     clearProductInfo();
 }
 
 function Calculations() {
-    var quantity = $("#BillDetail_Quantity").val() || 0;
-    var size = $("#BillDetail_Feet").val() || 0;
-    $("#BillDetail_TotalFeet").val((quantity * size).toFixed(2));
-    var rate = $("#BillDetail_Rate").val() || 0;
-    var totalfeet = $("#BillDetail_TotalFeet").val() || 0;
-    $("#BillDetail_NetAmount").val((rate * totalfeet).toFixed(2));
-    var netAmount = $("#BillDetail_NetAmount").val() || 0;
-    var discount = $("#BillDetail_Discount").val() || 0;
+    var quantity = $("#Quantity").val() || 0;
+    var size = $("#Feet").val() || 0;
+    $("#TotalFeet").val((quantity * size).toFixed(2));
+    var rate = $("#Rate").val() || 0;
+    var totalfeet = $("#TotalFeet").val() || 0;
+    $("#NetAmount").val((rate * totalfeet).toFixed(2));
+    var netAmount = $("#NetAmount").val() || 0;
+    var discount = $("#Discount").val() || 0;
     var amtToBePaid = netAmount - (netAmount / 100) * discount;
     var discountedAmount = netAmount - amtToBePaid;
-    $("#BillDetail_DiscountedAmount").val(discountedAmount.toFixed(2));
-    $("#BillDetail_AmountToBePaid").val(amtToBePaid.toFixed(2));
+    $("#DiscountedAmount").val(discountedAmount.toFixed(2));
+    $("#AmountToBePaid").val(amtToBePaid.toFixed(2));
 }
 
 function LoadProductsddl() {
-    var productName = $("#BillDetail_AllProduct_Name").val();
-    var color = $("#BillDetail_AluminumColorId").val() || 0;
-    var gage = $("#BillDetail_AluminumGageId").val() || 0;
+    var productName = $("#ProductName").val();
+    var color = $("#AluminumColorId").val() || 0;
+    var gage = $("#AluminumGageId").val() || 0;
     var type = $("#product_type").val() || 0;
     $.ajax({
         url: '/BillDetail/ProductSerach',
@@ -128,16 +125,16 @@ function LoadProductsddl() {
 function OnProductSelect(elem) {
     var pId = $(elem).find(".productId").val();
     var pRate = $.trim($(elem).find(".pRate").text());
-    $("#BillDetail_AllProductId").val(pId);
-    $("#BillDetail_Rate").val(pRate);
+    $("#AllProductId").val(pId);
+    $("#Rate").val(pRate);
     $("#divProductsSerachResults").hide();
 }
 
 function BillDetailSubmit() {
-    var selectedProduct = $("#BillDetail_AllProductId").val() || 0;
+    var selectedProduct = $("#AllProductId").val() || 0;
     if (selectedProduct == 0) {
         alert("Product is not selected properly");
-        $("#BillDetail_AllProduct_Name").val("");
+        $("#ProductName").val("");
         return;
     }
     $("#BillDetailForm").submit();
@@ -150,7 +147,7 @@ function RemoveProduct(elem) {
         url: '/BillDetail/RemoveProduct',
         data: {
             BillDetailId: row.find("#item_BillDetailId").val(),
-            BillId: row.find("#item_Bill_BillId").val()
+            BillId: $("#BillId").val()
         },
         success: function (data) {
                 row.remove();
@@ -186,28 +183,28 @@ function FillFormForEdit(elem) {
         SheetWidth: $.trim(row.find(".sheetWidth").text()),
         ProductName: $.trim(row.find(".pName").text()),
     }
-    $("#BillDetail_BillDetailId").val(objBillDetail.BillDetailId);
-    $("#BillDetail_AluminumColorId").val(objBillDetail.AluminumColorId);
-    $("#BillDetail_AluminumGageId").val(objBillDetail.AluminumGageId);
-    $("#BillDetail_AllProductId").val(objBillDetail.AllProductId);
-    $("#BillDetail_AllProduct_Name").val(objBillDetail.ProductName);
-    $("#BillDetail_Rate").val(objBillDetail.Rate);
-    $("#BillDetail_Discount").val(objBillDetail.Discount);
-    $("#BillDetail_Feet").val(objBillDetail.Feet);
-    $("#BillDetail_Quantity").val(objBillDetail.Quantity);
-    $("#BillDetail_TotalFeet").val(objBillDetail.TotalFeet);
-    $("#BillDetail_NetAmount").val(objBillDetail.NetAmount);
-    $("#BillDetail_DiscountedAmount").val(objBillDetail.DiscountedAmount);
-    $("#BillDetail_AmountToBePaid").val(objBillDetail.AmountToBePaid);
-    $("#BillDetail_SheetHeight").val(objBillDetail.SheetHeight);
-    $("#BillDetail_SheetWidth").val(objBillDetail.SheetWidth);
+    $("#BillDetailId").val(objBillDetail.BillDetailId);
+    $("#AluminumColorId").val(objBillDetail.AluminumColorId);
+    $("#AluminumGageId").val(objBillDetail.AluminumGageId);
+    $("#AllProductId").val(objBillDetail.AllProductId);
+    $("#ProductName").val(objBillDetail.ProductName);
+    $("#Rate").val(objBillDetail.Rate);
+    $("#Discount").val(objBillDetail.Discount);
+    $("#Feet").val(objBillDetail.Feet);
+    $("#Quantity").val(objBillDetail.Quantity);
+    $("#TotalFeet").val(objBillDetail.TotalFeet);
+    $("#NetAmount").val(objBillDetail.NetAmount);
+    $("#DiscountedAmount").val(objBillDetail.DiscountedAmount);
+    $("#AmountToBePaid").val(objBillDetail.AmountToBePaid);
+    $("#SheetHeight").val(objBillDetail.SheetHeight);
+    $("#SheetWidth").val(objBillDetail.SheetWidth);
     row.remove();
     
 }
 
 function BillPrint(Printtype) {
     debugger;
-    var billId = $("#Bill_BillId").val();
+    var billId = $("#BillId").val();
     var url = "";
     if (Printtype == "A5") 
         url = "/BillPrint/A5/" + billId;
