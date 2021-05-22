@@ -1,0 +1,70 @@
+﻿@model Zedx.Models.DTO.BillRequest
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div id="divPrint">
+    <div>
+        <div class="row border border-dark">
+            <div class="col-md-3"></div>
+            <div class="col-md-6"><h4>Haji Aluminum,Glass and Hardware Store</h4></div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row border border-dark mt-1 mb-1">
+            <div class="col-md-1">Bill Id</div><div class="col-md-1">@Model.BillId</div>
+            <div class="col-md-1">Customer</div><div class="col-md-2">@Model.CustomerName</div>
+            <div class="col-md-1">Date</div><div class="col-md-2">@Model.BillDate</div>
+        </div>
+    </div>
+
+    <partial name="_BillDetails" model="Model">
+</div>
+@section Styles{
+    <style>
+        tfoot td {
+            border: none !important;
+        }
+
+        tfoot {
+            border-top: 1px solid black;
+        }
+
+        @@media print {
+            body {
+                width: 21cm;
+                height: 29.7cm;
+                margin: 5mm 5mm 5mm 5mm;
+            }
+        }
+    </style>
+}
+@section Scripts{
+    <script>
+        jQuery(document).ready(function () {
+            RemoveExtraInfo();
+            HeightWidthExist();
+            Print();
+        });
+
+        function HeightWidthExist() {
+            var IsRemove = true;
+            $(".sheetWidth").each(function () {
+                if ($.trim($(this).text()) > 0) { IsRemove = false; }
+            });
+            $(".sheetHeight").each(function () {
+                if ($.trim($(this).text()) > 0) { IsRemove = false; }
+            });
+            if (IsRemove) {
+                $(".sheetHeight,.sheetWidth,.thHeight,.thwidth").remove();
+            }
+        }
+        function RemoveExtraInfo() {
+            $(".tdAction").remove();
+            $("table").removeClass("table-striped");
+            $("footer").remove();
+        }
+        function Print() {
+            window.print();
+        }
+    </script>
+}

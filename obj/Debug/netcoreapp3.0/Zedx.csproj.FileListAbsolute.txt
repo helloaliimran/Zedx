@@ -397,3 +397,4 @@ H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\Mainten
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\MaintenanceCounter\Index.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillPrint\Index.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillPrint\A5.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Debug\netcoreapp3.0\Razor\Views\BillDetail\Print.cshtml.g.cs

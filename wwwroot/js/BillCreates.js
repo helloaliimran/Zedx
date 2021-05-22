@@ -207,9 +207,10 @@ function BillPrint(Printtype) {
     var billId = $("#BillId").val();
     var url = "";
     if (Printtype == "A5") 
-        url = "/BillPrint/A5/" + billId;
+        url = "/BillDetail/Print/" + billId;
     else
-        url = "/BillPrint/index/" + billId;
+        //url = "/BillPrint/index/" + billId;
+        url = "/BillDetail/Print/" + billId;
 
     window.open(url, "_blank");
 }

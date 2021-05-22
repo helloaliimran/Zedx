@@ -2,3 +2,20 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+function loadingStart() {
+    $('#modalloader').modal('show');
+}
+
+function loadingEnd() {
+    $('#modalloader').modal('hide');
+}
+
+$(document).ajaxStart(function () {
+    loadingStart();
+});
+$(document).ajaxStop(function () {
+    loadingEnd();
+});
+$(document).ajaxComplete(function () {
+    loadingEnd();
+});

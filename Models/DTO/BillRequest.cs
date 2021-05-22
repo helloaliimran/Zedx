@@ -13,6 +13,8 @@ namespace Zedx.Models.DTO
         public float TotalDiscount { get; set; }
         public float Total { get; set; }
         public long CustomerId { get; set; }
+        public string  CustomerName { get; set; }
+        public string BillDate { get; set; }
         public List<BillProduct> BillProducts { get; set; }
         
     }

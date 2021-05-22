@@ -218,3 +218,4 @@ H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\Maint
 H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\MaintenanceCounter\Index.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\BillPrint\Index.cshtml.g.cs
 H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\BillPrint\A5.cshtml.g.cs
+H:\ali softwares solutions\zedx\Zedx\obj\Release\netcoreapp3.0\Razor\Views\BillDetail\Print.cshtml.g.cs

@@ -33,7 +33,8 @@ namespace Zedx.Controllers
             billandBillDetail.Bill = bill;
         }
         public void OpenOldBill(long billId, BillRequest billRequest)
-        {   
+        {
+            billRequest.BillId = billId;
             LoadBillProduct(billRequest);
         }
         public async Task<IActionResult> Creates(long? billId)
@@ -57,7 +58,9 @@ namespace Zedx.Controllers
             {
                 BillRequest billRequest = new BillRequest();
                 OpenOldBill((long)billId, billRequest);
-                return PartialView("_BillDetails", billRequest);
+                return View(billRequest);
+                
+                //return PartialView("_BillDetails", billRequest);
             }
 
 
@@ -224,102 +227,7 @@ namespace Zedx.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatesT2([Bind("BillDetailId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth,AllProductId,Bill")] BillDetail billDetail)
-        {
-            if (ModelState.IsValid)
-            {
-                bool IsNew = false;
-                try
-                {
-                    BillandBillDetail billandBillDetail = new BillandBillDetail();
-                    if (billDetail.BillId == 0)
-                    {
-                        IsNew = true;
-                        Bill bill = new Bill();
-                        bill.BillId = MaintenanceCounterRepository.GetId(_context, "BillId", "Bill");
-                        bill.CustomerId = billDetail.Bill.CustomerId;
-                        bill.TotalDiscount = billDetail.DiscountedAmount;
-                        bill.NetAmount = billDetail.NetAmount;
-                        bill.Total = billDetail.AmountToBePaid;
-                        bill.CreatedById = 100;
-                        bill.CreatedDate = DateTime.Now;
-                        _context.Add(bill);
-                        await _context.SaveChangesAsync();
-                        billDetail.BillId = bill.BillId;
-                        billandBillDetail.Bill = bill;
-                    }
-                    if (billDetail.BillDetailId == 0)
-                    {
-                        billDetail.BillDetailId = MaintenanceCounterRepository.GetId(_context, "BillDetailId", "BillDetail");
-                        billDetail.CreatedById = 100;
-                        billDetail.CreatedDate = DateTime.Now;
-                        if (!IsNew)
-                            billDetail.BillId = billDetail.Bill.BillId;
-                        billandBillDetail.Bill = billDetail.Bill;
-                        billDetail.Bill = null;
-                        _context.Add(billDetail);
-                        await _context.SaveChangesAsync();
-
-                    }
-                    else
-                    {
-                        billDetail.BillId = billDetail.Bill.BillId;
-                        billDetail.ModifiedById = 100;
-                        billDetail.ModifiedDate = DateTime.Now;
-                        billandBillDetail.Bill = billDetail.Bill;
-                        billDetail.Bill = null;
-
-                        _context.Update(billDetail);
-                        await _context.SaveChangesAsync();
-
-                    }
-                    billandBillDetail.BillDetail = billDetail;
-                    if (!IsNew)
-                    {
-                        billandBillDetail.Bill = new Bill();
-                        billDetail.BillId = billDetail.BillId;
-                        billandBillDetail.Bill.BillId = billDetail.Bill.BillId;
-                        billandBillDetail.Bill.CustomerId = billandBillDetail.Bill.CustomerId;
-                        billandBillDetail.Bill = CalculateBill(billandBillDetail.Bill.BillId);
-                        _context.Update(billandBillDetail.Bill);
-                        await _context.SaveChangesAsync();
-                    }
-
-                    billandBillDetail.lbillDetail =
-                   _context.BillDetail
-                   .Include(x => x.AllProduct)
-                   .Include(x => x.AluminumColor)
-                   .Include(x => x.AluminumGage)
-                   .Where(x => x.BillId == billDetail.BillId && x.Deleted == false)
-                   .ToList();
-
-                    return PartialView("_BillDetails", billandBillDetail);
-
-                }
-                catch (Exception e) { }
-            }
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreatesT([Bind("BillDetail,lbillDetail")] BillandBillDetail billandBillDetail)
-        {
-            if (ModelState.IsValid)
-            {
-                bool IsNew = false;
-                try
-                {
-                    var billandBillDetail1 = billandBillDetail;
-
-                }
-                catch (Exception e) { }
-            }
-            return View();
-        }
-        // GET: BillDetail/Edit/5
+          // GET: BillDetail/Edit/5
         public async Task<IActionResult> Edit(long? id)
         {
             if (id == null)
@@ -338,9 +246,7 @@ namespace Zedx.Controllers
             return View(billDetail);
         }
 
-        // POST: BillDetail/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(long id, [Bind("BillDetailId,ProductId,AluminumColorId,AluminumGageId,Rate,Discount,Feet,Quantity,TotalFeet,NetAmount,DiscountedAmount,AmountToBePaid,BillId,SheetHeight,SheetWidth,CreatedById,ModifiedById,CreatedDate,ModifiedDate,Deleted")] BillDetail billDetail)
@@ -419,13 +325,19 @@ namespace Zedx.Controllers
             int pType = int.Parse(Request.Query["productType"]);
             int pColor = int.Parse(Request.Query["aluminumColor"]);
             int pGage = int.Parse(Request.Query["aluminumGage"]);
+
+            if (pColor != 1)
+            {
+                pColor = 2;
+            }
+
             List<AllProduct> result;
             if (pType == 1)
             {
                 result = _context.AllProducts
                                                .Include(x => x.AluminumGage)
                                                .Include(x => x.AluminumColor)
-                                               .Where(x => (x.Name == pName && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
+                                               .Where(x => (x.Name.Contains(pName) && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
             }
             else
             {
@@ -469,6 +381,7 @@ namespace Zedx.Controllers
             _context.Update(bill);
             await _context.SaveChangesAsync();
             BillRequest billrequest = new BillRequest();
+            billrequest.BillId = billId;
             LoadBillProduct(billrequest);
 
             //BillandBillDetail billandBillDetail = new BillandBillDetail();
@@ -530,7 +443,17 @@ namespace Zedx.Controllers
             billrequest.Total = getbill.Total;
             billrequest.NetAmount = getbill.NetAmount;
             billrequest.CustomerId = getbill.CustomerId;
+            billrequest.BillDate = getbill.CreatedDate.ToShortDateString();
+            billrequest.CustomerName = _context.Customers.Where(x => x.CustomerId == getbill.CustomerId).FirstOrDefault().CustomerName;
 
+        }
+
+        public IActionResult Print(long id)
+        {
+            BillRequest billRequest = new BillRequest();
+            billRequest.BillId = id;
+            LoadBillProduct(billRequest);
+            return View(billRequest);
         }
     }
 }

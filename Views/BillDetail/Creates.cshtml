@@ -208,6 +208,7 @@
                             Bill Search
                         </button>
                         <a class="btn btn-primary btn-sm" href="/BillDetail/Creates" role="button">New</a>
+
                         <input type="button" value="Print" onclick="BillPrint('A4')" class="btn btn-primary btn-sm" />
                         <div class="input-group-prepend" style="display:none">
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Print</button>
@@ -223,7 +224,7 @@
             </div>
             <div class="row">
                 <div class="col-12" id="divAddProducts">
-                    @*<partial name="_BillDetails" model="Model">*@
+                    <partial name="_BillDetails" model="Model">
                 </div>
             </div>
         </form>

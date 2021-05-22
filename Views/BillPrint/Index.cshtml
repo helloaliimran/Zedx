@@ -1,4 +1,4 @@
-﻿@model Zedx.Models.ViewModel.BillandBillDetail
+﻿@model Zedx.Models.DTO.BillRequest
 
 @{
     ViewData["Title"] = "Create";
@@ -11,9 +11,9 @@
                 <div class="col-md-3"></div>
             </div>
             <div class="row border border-dark mt-1 mb-1">
-                <div class="col-md-1">Bill Id</div><div class="col-md-1">@Model.Bill.BillId</div>
-                <div class="col-md-1">Customer</div><div class="col-md-2">@Model.Bill.Customers.CustomerName</div>
-                <div class="col-md-1">Date</div><div class="col-md-2">@Model.Bill.CreatedDate.ToShortDateString()</div>
+                <div class="col-md-1">Bill Id</div><div class="col-md-1">@Model.BillId</div>
+                <div class="col-md-1">Customer</div><div class="col-md-2">@Model.CustomerName</div>
+                <div class="col-md-1">Date</div><div class="col-md-2">@Model.BillDate</div>
             </div>
         </div>
 
