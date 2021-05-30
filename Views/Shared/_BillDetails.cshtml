@@ -29,7 +29,7 @@
             @foreach (var item in Model.BillProducts)
             {
                 row++;
-                <tr>
+                <tr class="font-weight-bold">
                     <td>@row</td>
                     <td class="pName">
                         @Html.DisplayFor(modelItem => item.ProductName)
@@ -97,7 +97,7 @@
             }
         }
     </tbody>
-    <tfoot>
+    <tfoot class="font-weight-bold">
         <tr>
             <td class="thHeight"></td>
             <td class="thwidth"></td>

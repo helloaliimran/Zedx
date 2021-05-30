@@ -444,7 +444,11 @@ namespace Zedx.Controllers
             billrequest.NetAmount = getbill.NetAmount;
             billrequest.CustomerId = getbill.CustomerId;
             billrequest.BillDate = getbill.CreatedDate.ToShortDateString();
-            billrequest.CustomerName = _context.Customers.Where(x => x.CustomerId == getbill.CustomerId).FirstOrDefault().CustomerName;
+
+            var customer= _context.Customers.Where(x => x.CustomerId == getbill.CustomerId).FirstOrDefault();
+            billrequest.CustomerName = customer.CustomerName;
+            billrequest.Address = customer.Address;
+            billrequest.Number = customer.Number;
 
         }
 

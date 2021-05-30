@@ -15,6 +15,8 @@ namespace Zedx.Models.DTO
         public long CustomerId { get; set; }
         public string  CustomerName { get; set; }
         public string BillDate { get; set; }
+        public string Number { get; set; }
+        public string Address { get; set; }
         public List<BillProduct> BillProducts { get; set; }
         
     }
