@@ -6,14 +6,28 @@
 <div id="divPrint">
     <div>
         <div class="row border border-dark">
-            <div class="col-md-3"></div>
-            <div class="col-md-6"><h4>Haji Aluminum,Glass and Hardware Store</h4></div>
-            <div class="col-md-3"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-10 font-weight-bold text-center"><h1>Haji Aluminum,Glass and Hardware Store</h1></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-12 text-center">High Court Road, Near Car-Chowk, Bahria Town, 0300-5542400 , 03005014526</div>
+        </div>
+        <div class="row mt-1 mb-1">
+            <div class="row col-md-12">
+                <div class="col-md-2 font-weight-bold"><h6>Bill Id</h6></div><div class="col-md-2 font-weight-bold"><h6>@Model.BillId</h6></div>
+                <div class="col-md-2 font-weight-bold"></div>
+                <div class="col-md-2 font-weight-bold"><h6>Customer</h6></div><div class="col-md-4 font-weight-bold float-left"><h6>@Model.CustomerName</h6></div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-2 font-weight-bold"><h6>Date</h6></div><div class="col-md-2 font-weight-bold float-left"><h6>@Model.BillDate</h6></div>
+                <div class="col-md-2 font-weight-bold"></div>
+                <div class="col-md-2 font-weight-bold"><h6>Number</h6></div><div class="col-md-4 font-weight-bold float-left"><h6>@Model.Number</h6></div>
+            </div>
+            <div class="row col-md-12">
+                <div class="col-md-2 font-weight-bold"><h6>Address</h6></div><div class="col-md-10 font-weight-bold float-left"><h6>@Model.Address</h6></div>
+            </div>
         </div>
         <div class="row border border-dark mt-1 mb-1">
-            <div class="col-md-1">Bill Id</div><div class="col-md-1">@Model.BillId</div>
-            <div class="col-md-1">Customer</div><div class="col-md-2">@Model.CustomerName</div>
-            <div class="col-md-1">Date</div><div class="col-md-2">@Model.BillDate</div>
+
         </div>
     </div>
 
