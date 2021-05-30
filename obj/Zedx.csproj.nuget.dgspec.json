@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "H:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj": {}
+    "C:\\Users\\User\\Source\\Repos\\Zedx\\Zedx.csproj": {}
   },
   "projects": {
-    "H:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj": {
+    "C:\\Users\\User\\Source\\Repos\\Zedx\\Zedx.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Source\\Repos\\Zedx\\Zedx.csproj",
         "projectName": "Zedx",
-        "projectPath": "H:\\ali softwares solutions\\zedx\\Zedx\\Zedx.csproj",
-        "packagesPath": "C:\\Users\\hello\\.nuget\\packages\\",
-        "outputPath": "H:\\ali softwares solutions\\zedx\\Zedx\\obj\\",
+        "projectPath": "C:\\Users\\User\\Source\\Repos\\Zedx\\Zedx.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Source\\Repos\\Zedx\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\hello\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +26,7 @@
         },
         "frameworks": {
           "netcoreapp3.0": {
+            "targetAlias": "netcoreapp3.0",
             "projectReferences": {}
           }
         },
@@ -37,6 +38,7 @@
       },
       "frameworks": {
         "netcoreapp3.0": {
+          "targetAlias": "netcoreapp3.0",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -49,6 +51,12 @@
               "version": "[3.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[3.0.0, )"
             },
@@ -75,6 +83,14 @@
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
               "version": "[3.0.3, 3.0.3]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
             }
           ],
           "frameworkReferences": {
@@ -85,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -41,10 +41,10 @@ namespace Zedx
             });
 
             services.AddMvc(config => {
-            var policy = new AuthorizationPolicyBuilder()
-                        .RequireAuthenticatedUser()
-                        .Build();
-             config.Filters.Add(new AuthorizeFilter(policy));
+            //var policy = new AuthorizationPolicyBuilder()
+            //            .RequireAuthenticatedUser()
+            //            .Build();
+            // config.Filters.Add(new AuthorizeFilter(policy));
             });
        
         }
@@ -68,8 +68,8 @@ namespace Zedx
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+           // app.UseAuthentication();
+           // app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
