@@ -326,10 +326,19 @@ namespace Zedx.Controllers
             int pColor = int.Parse(Request.Query["aluminumColor"]);
             int pGage = int.Parse(Request.Query["aluminumGage"]);
 
+            #region color logic except Dull all color have same rate
             if (pColor != 1)
             {
                 pColor = 2;
             }
+            #endregion
+
+            #region gage logic 1.2mm and N gage have same rate
+            if (pGage == 1)
+            {
+                pGage = 2;
+            }
+            #endregion
 
             List<AllProduct> result;
             if (pType == 1)
