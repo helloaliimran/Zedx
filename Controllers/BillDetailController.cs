@@ -346,7 +346,7 @@ namespace Zedx.Controllers
                 result = _context.AllProducts
                                                .Include(x => x.AluminumGage)
                                                .Include(x => x.AluminumColor)
-                                               .Where(x => (x.Name.Contains(pName) && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
+                                               .Where(x => (x.Name==pName && x.AluminumColorId == pColor && x.AluminumGageId == pGage)).ToList();
             }
             else
             {

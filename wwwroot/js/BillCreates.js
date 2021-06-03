@@ -1,11 +1,15 @@
 ﻿$(document).ready(function () {
     ActiveProductSearch();
+    
 });
 
 $("#ProductName").on('keyup', function (e) {
+    
     var code = e.key;
-    if (code === "Enter")
+    if (code === "Enter") {
         LoadProductsddl();
+        
+    }
     else {
         e.preventDefault();
     }
@@ -41,6 +45,44 @@ $("#product_type").on('change', function () {
 $("#AluminumColorId, #AluminumGageId, #product_type").on("change", function () {
     ActiveProductSearch();
 });
+
+
+
+
+function ProductTableNavigate() {
+
+    var rows = document.getElementById("ProductSearch").children[1].children;
+    var selectedRow = 0;
+    document.body.onkeydown = function (e) {
+        if (!$("#ProductSearch").is(":visible")) {
+            return;
+        }
+        //Prevent page scrolling on keypress
+        //e.preventDefault();
+        //Clear out old row's color
+        rows[selectedRow].style.backgroundColor = "#FFFFFF";
+        //Calculate new row
+        if (e.keyCode == 38) {
+            selectedRow--;
+        } else if (e.keyCode == 40) {
+            selectedRow++;
+        }
+        else if (e.keyCode == 13) {
+
+            OnProductSelect(rows[selectedRow]);
+        }
+        if (selectedRow >= rows.length) {
+            selectedRow = 0;
+        } else if (selectedRow < 0) {
+            selectedRow = rows.length - 1;
+        }
+        //Set new row's color
+        rows[selectedRow].style.backgroundColor = "#8888FF";
+
+    };
+    //Set the first row to selected color
+    rows[0].style.backgroundColor = "#8888FF";
+}
 
 function ActiveProductSearch() {
     if ($("#product_type").val() == 1) {
@@ -118,6 +160,12 @@ function LoadProductsddl() {
         success: function (data) {
             $("#divProductsSerachResults").html(data);
             $("#divProductsSerachResults").show();
+            var countrows = $("#ProductSearch").find('tbody').find('tr').length;
+            if (countrows > 0) {
+                ProductTableNavigate();
+                $("#Rate").focus();
+            }
+            
         }
     })
 }
